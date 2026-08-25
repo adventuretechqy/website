@@ -242,6 +242,7 @@ svg { width: 100%; height: 100%; }
   padding: 10px 20px;
   font-size: 14px;
   color: var(--text-mid);
+  cursor: pointer;
   transition: background .15s, color .15s, padding-left .15s;
 }
 .submenu a:hover { background: var(--gray-50); color: var(--blue); padding-left: 26px; }
