@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adventure Technology · UI/UX 设计规范（从代码提取）</title>
+<style>
+  /* ============================================================
+     Design Spec 页面本身也采用提取出的设计系统搭建
+     ============================================================ */
+  :root {
+    --blue: #00A1FE;
+    --blue-light: #3DB8FE;
+    --blue-dark: #0081CB;
+    --black: #000000;
+    --dark: #1A1A1A;
+    --text: #1A1A1A;
+    --text-mid: #333333;
+    --text-muted: #666666;
+    --gray-50: #FAFAFA;
+    --gray-100: #F5F5F5;
+    --gray-200: #E8E8E8;
+    --gray-300: #E0E0E0;
+    --footer-bg: #0D0D0D;
+    --font: 'Inter', 'Helvetica Neue', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+    --max-w: 1200px;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  code, .mono {
+    font-family: 'SF Mono', 'Cascadia Code', Consolas, 'Courier New', monospace;
+    font-size: 0.86em;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    padding: 1px 6px;
+    color: var(--blue-dark);
+  }
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- 区块 ---------- */
+  .sec { padding: 72px 0; }
+  .sec-alt { background: var(--gray-100); }
+  .sec-head { margin-bottom: 40px; }
+  .sec-tag {
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 10px;
+  }
+  .sec-tag::before { content: ""; display: inline-block; width: 22px; height: 2px; background: var(--blue); vertical-align: middle; margin-right: 8px; }
+  .sec-title { font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -0.02em; color: var(--black); }
+  .sec-desc { font-size: 15px; color: var(--text-muted); margin-top: 8px; max-width: 640px; }
+
+  /* ---------- 通用卡片 ---------- */
+  .card {
+    background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 24px; margin-bottom: 16px;
+  }
+  .card h4 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .card .hint { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+  .card .src { font-size: 12px; color: var(--text-muted); }
+  .card .src code { background: transparent; border: none; padding: 0; color: var(--text-muted); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  .demo-box { border: 1px dashed var(--gray-300); border-radius: 10px; background: var(--gray-50); padding: 20px; margin-top: 8px; }
+  .demo-box.dark { background: var(--dark); }
+
+  table.spec { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 8px; }
+  table.spec th, table.spec td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+  table.spec th { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); background: var(--gray-50); }
+  table.spec td:first-child { font-weight: 600; white-space: nowrap; }
+
+  /* ============================================================
+     从原代码提取的组件样式（直接复用）
+     ============================================================ */
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 13px 28px; font-weight: 600; font-size: 15px;
+    border: 2px solid transparent; cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s, transform .15s;
+    text-align: center; font-family: var(--font); letter-spacing: 0.01em; border-radius: 0;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .btn-primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+  .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+  .btn-outline:hover { background: #fff; color: var(--black); border-color: #fff; }
+  .btn-outline-dark { background: transparent; color: var(--black); border-color: var(--black); }
+  .btn-outline-dark:hover { background: var(--black); color: #fff; }
+  .btn-sm { padding: 9px 18px; font-size: 14px; }
+
+  .link-arrow { font-size: 15px; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 6px; transition: color .15s, gap .15s; }
+  .link-arrow:hover { color: var(--blue-dark); gap: 10px; }
+  .card-link { font-size: 14px; font-weight: 600; color: var(--blue); }
+  .card-link:hover { color: var(--blue-dark); }
+
+  /* ---------- 导航 ---------- */
+  .demo-nav {
+    display: flex; align-items: center; gap: 20px; height: 60px; padding: 0 16px;
+    background: rgba(255,255,255,.95); border: 1px solid var(--gray-200); border-radius: 10px;
+  }
+  .demo-nav .logo-block { width: 90px; height: 24px; background: var(--gray-200); border-radius: 4px; }
+  .demo-nav ul { display: flex; gap: 2px; margin-left: 8px; }
+  .demo-nav li { position: relative; }
+  .demo-nav li a { display: block; padding: 8px 12px; font-size: 13px; font-weight: 500; color: var(--text-mid); position: relative; }
+  .demo-nav li a:hover { color: var(--blue); }
+  .demo-nav li a::after {
+    content: ""; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px;
+    background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform .2s;
+  }
+  .demo-nav li:hover a::after { transform: scaleX(1); }
+  .demo-nav .btn { margin-left: auto; padding: 9px 18px; font-size: 14px; }
+
+  /* 下拉菜单 */
+  .dd { position: relative; }
+  .dd-panel {
+    position: absolute; top: calc(100% + 6px); left: 0; min-width: 220px; background: #fff;
+    border: 1px solid var(--gray-200); border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.08); padding: 8px 0; z-index: 50;
+    opacity: 0; visibility: hidden; transform: translateY(6px); transition: all .18s;
+  }
+  .dd:hover .dd-panel, .dd:focus-within .dd-panel { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dd-panel a { display: block; padding: 9px 20px; font-size: 14px; color: var(--text-mid); transition: background .15s, color .15s, padding-left .15s; }
+  .dd-panel a:hover { background: var(--gray-50); color: var(--blue); padding-left: 26px; }
+
+  /* ---------- 产品卡片 ---------- */
+  .product-card {
+    display: flex; flex-direction: column; background: #fff;
+    border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.10); border-color: var(--blue); }
+  .product-img { background: var(--gray-50); padding: 28px 20px; display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; }
+  .product-img .ph { width: 90px; height: 90px; background: linear-gradient(135deg, #E8E8E8, #C9D6EA); border-radius: 14px; transition: transform .3s; }
+  .product-card:hover .product-img .ph { transform: scale(1.06); }
+  .product-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .product-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); }
+  .product-body h3 { font-size: 18px; font-weight: 700; color: var(--black); line-height: 1.2; }
+  .product-body p { font-size: 13px; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+  /* ---------- 选项卡 ---------- */
+  .tabs { position: relative; }
+  .tabs input[type="radio"] { display: none; }
+  .tab-labels { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 2px solid var(--gray-200); margin-bottom: 24px; }
+  .tab-labels label {
+    padding: 12px 20px; font-size: 13px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; position: relative; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color .15s;
+  }
+  .tab-labels label:hover { color: var(--blue); }
+  #ds-1:checked ~ .tab-labels label[for="ds-1"],
+  #ds-2:checked ~ .tab-labels label[for="ds-2"],
+  #ds-3:checked ~ .tab-labels label[for="ds-3"] { color: var(--blue); border-bottom-color: var(--blue); }
+  .tab-panels { position: relative; }
+  .tab-panel { display: none; padding: 8px 0; }
+  #ds-1:checked ~ .tab-panels .tab-panel:nth-child(1),
+  #ds-2:checked ~ .tab-panels .tab-panel:nth-child(2),
+  #ds-3:checked ~ .tab-panels .tab-panel:nth-child(3) { display: block; }
+  .tab-panel h5 { font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+  .tab-panel p { font-size: 14px; color: var(--text-mid); line-height: 1.7; max-width: 640px; margin-bottom: 16px; }
+
+  /* ---------- 材料胶囊 ---------- */
+  .material-pill {
+    display: flex; align-items: center; gap: 12px; padding: 20px 18px;
+    background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius);
+    font-size: 15px; font-weight: 600; color: var(--black);
+    transition: background .2s, border-color .2s, transform .15s;
+  }
+  .material-pill:hover { background: #fff; border-color: var(--blue); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,161,254,.08); }
+  .pill-icon {
+    flex: 0 0 40px; width: 40px; height: 40px; background: var(--blue); color: #fff;
+    display: flex; align-items: center; justify-content: center; border-radius: 10px; padding: 9px;
+  }
+  .pill-icon svg { width: 100%; height: 100%; }
+
+  /* ---------- 联系卡片（深色） ---------- */
+  .contact-card {
+    display: flex; gap: 16px; align-items: flex-start; background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius);
+    padding: 24px 22px; color: #fff; transition: border-color .2s, background .2s;
+  }
+  .contact-card:hover { border-color: var(--blue); background: rgba(0,161,254,.08); }
+  .contact-icon {
+    flex: 0 0 44px; width: 44px; height: 44px; background: var(--blue); color: #fff;
+    display: flex; align-items: center; justify-content: center; border-radius: 50%; padding: 11px;
+  }
+  .contact-icon svg { width: 100%; height: 100%; }
+  .contact-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue-light); }
+  .contact-value { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.85); }
+
+  /* ---------- 悬浮按钮 ---------- */
+  .float-row { display: flex; gap: 10px; }
+  .float-btn {
+    width: 48px; height: 48px; background: var(--black); color: #fff;
+    display: flex; align-items: center; justify-content: center; border-radius: 50%; padding: 12px;
+    transition: background .2s, color .2s, transform .15s; box-shadow: 0 4px 20px rgba(0,0,0,.15);
+  }
+  .float-btn:hover { background: var(--blue); transform: scale(1.08); }
+  .float-btn svg { width: 100%; height: 100%; }
+  .float-btn-top { background: var(--blue); }
+  .float-btn-top:hover { background: var(--blue-dark); }
+
+  /* ---------- 页脚 ---------- */
+  .footer-demo { background: var(--footer-bg); color: #fff; border-radius: 12px; padding: 28px 24px; }
+  .footer-demo .f-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+  .footer-demo .f-col { display: flex; flex-direction: column; gap: 8px; }
+  .footer-demo a { font-size: 13px; color: rgba(255,255,255,.55); transition: color .15s; }
+  .footer-demo a:hover { color: var(--blue-light); }
+  .footer-demo .f-bottom { border-top: 1px solid rgba(255,255,255,.1); margin-top: 20px; padding-top: 16px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px; color: rgba(255,255,255,.4); }
+
+  /* ---------- 色板 ---------- */
+  .swatch { border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200); background: #fff; transition: transform .15s; }
+  .swatch:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+  .swatch .chip { height: 72px; position: relative; }
+  .swatch .body { padding: 12px 14px; }
+  .swatch .name { font-size: 13px; font-weight: 700; color: var(--black); }
+  .swatch .hex { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .swatch .use { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
+
+  /* ---------- 字阶 ---------- */
+  .type-row {
+    display: flex; align-items: baseline; gap: 24px; padding: 18px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .type-row .demo { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .type-row .info { width: 300px; flex-shrink: 0; font-size: 12.5px; color: var(--text-muted); line-height: 1.7; }
+  .type-row .info b { color: var(--text-mid); font-weight: 600; }
+  .type-row .info code { margin-right: 4px; }
+
+  /* ---------- 动效列表 ---------- */
+  .motion-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--gray-200); }
+  .motion-item .dot { flex: 0 0 34px; height: 34px; border-radius: 8px; background: var(--blue); transition: all .25s; }
+  .motion-item:hover .dot { transform: translateY(-4px) scale(1.08); box-shadow: 0 8px 16px rgba(0,161,254,.25); }
+  .motion-item h5 { font-size: 14px; font-weight: 700; color: var(--black); }
+  .motion-item p { font-size: 13px; color: var(--text-muted); }
+
+  /* ---------- UX 清单 ---------- */
+  .ux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ux-item { display: flex; gap: 12px; background: #fff; border: 1px solid var(--gray-200); border-radius: 10px; padding: 16px; }
+  .ux-item .num {
+    flex: 0 0 26px; height: 26px; border-radius: 8px; background: var(--blue); color: #fff;
+    font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+  .ux-item h5 { font-size: 14px; font-weight: 700; color: var(--black); }
+  .ux-item p { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+
+  @media (max-width: 900px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2, .ux-grid { grid-template-columns: 1fr; }
+    .type-row { flex-direction: column; gap: 6px; }
+    .type-row .info { width: 100%; }
+  }
+  @media (max-width: 560px) {
+    .grid-4, .grid-2 { grid-template-columns: 1fr; }
+    .container { padding: 0 20px; }
+  }
+
+  /* ---------- 打印分页控制 ---------- */
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    /* 关键视觉块禁止被拆到两页：色板网格/卡片/表格 */
+    .grid-3, .grid-4, .grid-2, .card, .type-row, .ux-grid,
+    table.spec, .comp-list { break-inside: avoid; }
+    .swatch, .motion-item, .ux-item, .material-pill, .product-card, .spec-row { break-inside: avoid; }
+    /* 标题不要独自留在页尾 */
+    .sec-head, h4, .sec-title, .card h4, .tab-panel h5, .motion-item h5 { break-after: avoid; }
+    .sec { padding: 40px 0; }
+    .sec-head { margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. 色板 ============ -->
+<section class="sec" id="colors">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">01 · Color</p>
+      <h2 class="sec-title">配色系统</h2>
+      <p class="sec-desc">整体策略：<b>大面积中性色 + 单一品牌蓝</b>。蓝色只出现在可交互元素与强调信息上，保证视觉焦点集中。</p>
+    </div>
+
+    <h4 style="font-size:14px;font-weight:700;margin-bottom:12px;">品牌色 · 主蓝（唯一彩色）</h4>
+    <div class="grid-3" style="margin-bottom:32px;">
+      <div class="swatch">
+        <div class="chip" style="background:#00A1FE;"></div>
+        <div class="body">
+          <div class="name">Brand Blue · 品牌蓝 <code>--blue</code></div>
+          <div class="hex">#00A1FE</div>
+          <div class="use">主按钮、链接、标签、图标底、选中态、悬浮边框</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#3DB8FE;"></div>
+        <div class="body">
+          <div class="name">Light Blue <code>--blue-light</code></div>
+          <div class="hex">#3DB8FE</div>
+          <div class="use">深色背景上的蓝色文字（Hero 标签、联系卡标签、页脚链接 hover）</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#0081CB;"></div>
+        <div class="body">
+          <div class="name">Dark Blue <code>--blue-dark</code></div>
+          <div class="hex">#0081CB</div>
+          <div class="use">主按钮 / 链接的 hover 态（交互反馈专用）</div>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-size:14px;font-weight:700;margin-bottom:12px;">中性色 · 文字与背景</h4>
+    <div class="grid-4" style="margin-bottom:32px;">
+      <div class="swatch">
+        <div class="chip" style="background:#000;"></div>
+        <div class="body">
+          <div class="name">Black <code>--black</code></div>
+          <div class="hex">#000000</div>
+          <div class="use">大标题、深色描边按钮文字</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#1A1A1A;"></div>
+        <div class="body">
+          <div class="name">Dark <code>--dark</code></div>
+          <div class="hex">#1A1A1A</div>
+          <div class="use">Hero / 联系区深色背景、正文文字</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#333;"></div>
+        <div class="body">
+          <div class="name">Text Mid <code>--text-mid</code></div>
+          <div class="hex">#333333</div>
+          <div class="use">导航链接、段落正文</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#666;"></div>
+        <div class="body">
+          <div class="name">Text Muted <code>--text-muted</code></div>
+          <div class="hex">#666666</div>
+          <div class="use">辅助说明文字、卡片描述</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#FAFAFA;"></div>
+        <div class="body">
+          <div class="name">Gray 50 <code>--gray-50</code></div>
+          <div class="hex">#FAFAFA</div>
+          <div class="use">产品图底板、胶囊底色、下拉 hover</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#F5F5F5;"></div>
+        <div class="body">
+          <div class="name">Gray 100 <code>--gray-100</code></div>
+          <div class="hex">#F5F5F5</div>
+          <div class="use">交替区块背景（应用场景、新闻区）</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#E8E8E8;"></div>
+        <div class="body">
+          <div class="name">Gray 200 <code>--gray-200</code></div>
+          <div class="hex">#E8E8E8</div>
+          <div class="use">全局描边：卡片边框、导航分隔线、Tab 底线</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#0D0D0D;"></div>
+        <div class="body">
+          <div class="name">Footer <code>--footer-bg</code></div>
+          <div class="hex">#0D0D0D</div>
+          <div class="use">页脚专用深底，比 --dark 更深一档</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>深色区覆盖层（Hero / 联系区）</h4>
+      <p class="hint">图片/背景上的文字可读性保障 —— 渐变遮罩</p>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">Hero 遮罩（左→右渐隐，105°）</p>
+          <code>linear-gradient(105deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.72) 45%, rgba(0,0,0,.40) 100%)</code>
+        </div>
+        <div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">深色区卡片 / 边框</p>
+          <code>bg: rgba(255,255,255,.05)</code>　<code>border: rgba(255,255,255,.12)</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. 字体 ============ -->
+<section class="sec sec-alt" id="type">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">02 · Typography</p>
+      <h2 class="sec-title">字体与层级</h2>
+      <p class="sec-desc">单一无衬线字体栈 <code>Inter / Helvetica Neue / Segoe UI / Arial</code>，靠字重（500/600/700/800）与大字号差建立层级，不用彩色区分。</p>
+    </div>
+
+    <div class="card" style="padding:8px 24px;">
+      <div class="type-row">
+        <div class="demo" style="font-size:clamp(36px,5.5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-0.025em;color:#000;">DLP Ceramic 3D Printer.</div>
+        <div class="info"><b>Hero H1 · Display</b><br><code>clamp(36, 5.5vw, 64)px</code> / 800 / 1.08<br>仅用于首屏主标题，字距 -0.025em</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:clamp(30px,4vw,44px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:#000;">Make Anything With Ceramics</div>
+        <div class="info"><b>Section Title · 区块标题</b><br><code>clamp(30, 4vw, 44)px</code> / 800 / 1.15</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:clamp(24px,3vw,32px);font-weight:700;color:#000;">Scientific Research</div>
+        <div class="info"><b>Tab Panel Title</b><br><code>clamp(24, 3vw, 32)px</code> / 700</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:22px;font-weight:700;line-height:1.2;color:#000;">Laboratory</div>
+        <div class="info"><b>Product Card Title</b><br>22px / 700 / 1.2</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:17px;font-weight:700;line-height:1.4;color:#000;">Silicon Nitride Ceramic Sintering: Engineering Density…</div>
+        <div class="info"><b>News Card Title</b><br>17px / 700 / 1.4（两行容限）</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:18px;color:#666;">Four configurations for every stage — from lab R&amp;D to industrial production.</div>
+        <div class="info"><b>Section Sub / Hero Sub</b><br>18px / <code>--text-muted</code> 或 rgba(255,255,255,.75)</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:16px;line-height:1.6;color:#1A1A1A;">Base body text with comfortable 1.6 line height.</div>
+        <div class="info"><b>正文基线</b><br>16px / 1.6 / <code>--text</code></div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:14px;color:#666;line-height:1.55;">700 layers per hour, multi-material compatibility, one-click printing.</div>
+        <div class="info"><b>卡片描述</b><br>14px / 1.55 / muted（产品、新闻卡）</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00A1FE;"><span style="background:#00A1FE;display:inline-block;width:22px;height:2px;vertical-align:middle;margin-right:8px;"></span>Ceramic 3D Printers</div>
+        <div class="info"><b>Section Tag · 区块眉题</b><br>13px / 700 / 字距 2px / 大写<br>前置 22×2px 蓝色短线</div>
+      </div>
+      <div class="type-row" style="border-bottom:none;">
+        <div class="demo" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#00A1FE;">DLP · Label</div>
+        <div class="info"><b>微型标签</b><br>12px / 700 / 字距 1~1.5px / 大写<br>用于 product-label / news-tag / contact-label</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. 按钮 ============ -->
+<section class="sec" id="buttons">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">03 · Buttons</p>
+      <h2 class="sec-title">按钮体系</h2>
+      <p class="sec-desc">亮点：<b>所有常规按钮都是直角（radius 0）</b>，与 12px 圆角卡片形成"硬朗 vs 柔和"的对比 —— 这是整套设计最鲜明的特征之一。默认 2px 描边、15px / 600 字重、按下 scale(0.98)。</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>主按钮 · Primary</h4>
+        <p class="hint">全站最高优先级操作，蓝色实底</p>
+        <div class="demo-box" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="btn btn-primary" href="#">Get in Touch</a>
+          <a class="btn btn-primary" href="#">All Printers</a>
+          <a class="btn btn-primary btn-sm" href="#">紧凑尺寸</a>
+        </div>
+        <p class="src" style="margin-top:10px;">
+          <code>background:#00A1FE</code>　<code>hover → #0081CB</code><br>
+          <code>padding:13px 28px</code>　<code>15px / 600</code>　<code>border:2px solid</code>　<code>radius:0</code>
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>深色描边按钮 · Outline（用于深色背景）</h4>
+        <p class="hint">Hero / 联系区上的次级操作，白色半透明描边</p>
+        <div class="demo-box dark" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="btn btn-outline" href="#">Contact Sales</a>
+          <a class="btn btn-outline" href="#">Send Email</a>
+        </div>
+        <p class="src" style="margin-top:10px;">
+          <code>color:#fff</code>　<code>border:rgba(255,255,255,.6)</code><br>
+          <code>hover → 白底黑字</code>（背景翻转是这套系统的标志性反馈）
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>浅色描边按钮 · Outline Dark（用于浅色背景）</h4>
+        <p class="hint">白底区块上的次级操作，黑描边，hover 翻转为黑底白字</p>
+        <div class="demo-box" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="btn btn-outline-dark" href="#">Request a Quote</a>
+          <a class="btn btn-outline-dark btn-sm" href="#">Open Material Mode</a>
+        </div>
+        <p class="src" style="margin-top:10px;">
+          <code>color:#000</code>　<code>border:2px #000</code>　<code>hover → 黑底白字</code>
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>文字链接 · 三种强度</h4>
+        <p class="hint">区块右侧的箭头链接与卡片内"Learn More"</p>
+        <div class="demo-box" style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+          <a class="link-arrow" href="#">All Printers →</a>
+          <span class="card-link">Learn More →</span>
+        </div>
+        <p class="src" style="margin-top:10px;">
+          <code>link-arrow</code>：15px/600/蓝，hover 时箭头间距 6px→10px<br>
+          <code>card-link</code>：14px/600/蓝，hover 变深蓝
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h4>圆形悬浮按钮 · Float（固定右下角工具条）</h4>
+      <p class="hint">WhatsApp / 邮件 / 回到顶部 —— 全站唯一使用圆形的按钮</p>
+      <div class="demo-box" style="display:flex;gap:14px;align-items:center;">
+        <div class="float-row">
+          <span class="float-btn" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.2-3.6-.8-3-1.2-4.9-4.2-5.1-4.4-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5s.8 1.9.9 2c.1.1.1.3 0 .5l-.4.6-.5.5c-.2.2-.3.3-.1.6.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.8.8c.3.2.5.3.6.4.1.2.1.7-.1 1.3z" fill="currentColor"/></svg></span>
+          <span class="float-btn" title="E-mail"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg></span>
+          <span class="float-btn float-btn-top" title="Back to top"><svg viewBox="0 0 24 24"><path d="M12 4l8 8h-5v8h-6v-8H4l8-8z" fill="currentColor"/></svg></span>
+        </div>
+        <p class="src" style="margin-left:8px;">48×48px / 黑底 / hover → 蓝色 + scale(1.08)<br>顶部按钮用蓝底，hover 变深蓝</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. 组件 ============ -->
+<section class="sec sec-alt" id="components">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">04 · Components</p>
+      <h2 class="sec-title">核心组件</h2>
+      <p class="sec-desc">以下均为可交互还原 —— 悬停试试。所有卡片统一 12px 圆角 + #E8E8E8 描边。</p>
+    </div>
+
+    <!-- 导航 -->
+    <div class="card">
+      <h4>顶部导航 + 下拉菜单</h4>
+      <p class="hint">sticky 吸顶 · 95% 白 + 12px 毛玻璃模糊 · 72px 高 · 链接 hover 有蓝色下划线生长动画</p>
+      <nav class="demo-nav">
+        <span class="logo-block"></span>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li class="dd"><a href="#">Printer ▾</a>
+            <div class="dd-panel">
+              <a href="#">DLP Ceramic 3D Printer</a>
+              <a href="#">DIW Ceramic 3D Printer</a>
+              <a href="#">SLA Ceramic 3D Printer</a>
+            </div>
+          </li>
+          <li><a href="#">Material</a></li>
+          <li><a href="#">Application</a></li>
+        </ul>
+        <a class="btn btn-primary btn-sm" href="#">Get in Touch</a>
+      </nav>
+      <p class="src" style="margin-top:12px;">
+        下拉：白底 · min-width 220px · 圆角 8 · 阴影 <code>0 12px 40px rgba(0,0,0,.08)</code><br>
+        条目 hover：灰底 + 蓝字 + 左缩进 20→26px
+      </p>
+    </div>
+
+    <!-- 产品卡 -->
+    <div class="card">
+      <h4>产品卡片（4 列网格）</h4>
+      <p class="hint">整卡可点 · hover 上浮 6px + 蓝色描边 + 图片微缩放</p>
+      <div class="grid-4">
+        <a class="product-card" href="#">
+          <div class="product-img"><span class="ph"></span></div>
+          <div class="product-body">
+            <span class="product-label">DLP</span>
+            <h3>Standard</h3>
+            <p>700 layers per hour, multi-material compatibility.</p>
+            <span class="card-link">Learn More →</span>
+          </div>
+        </a>
+        <a class="product-card" href="#">
+          <div class="product-img"><span class="ph"></span></div>
+          <div class="product-body">
+            <span class="product-label">DLP</span>
+            <h3>Laboratory</h3>
+            <p>1080P UV light source, 25µm optical precision.</p>
+            <span class="card-link">Learn More →</span>
+          </div>
+        </a>
+        <a class="product-card" href="#">
+          <div class="product-img"><span class="ph"></span></div>
+          <div class="product-body">
+            <span class="product-label">DLP</span>
+            <h3>Industry</h3>
+            <p>Large-format 288×162mm, 600 layers/hour.</p>
+            <span class="card-link">Learn More →</span>
+          </div>
+        </a>
+        <a class="product-card" href="#">
+          <div class="product-img"><span class="ph"></span></div>
+          <div class="product-body">
+            <span class="product-label">DLP</span>
+            <h3>Equipment</h3>
+            <p>Compact footprint, 20mL minimum material.</p>
+            <span class="card-link">Learn More →</span>
+          </div>
+        </a>
+      </div>
+      <p class="src" style="margin-top:12px;">
+        图区 <code>#FAFAFA</code> · 4:3 · 图内元素 hover 时 scale(1.05)<br>
+        上浮阴影 <code>0 20px 48px rgba(0,0,0,.10)</code> · 描边切蓝 <code>#00A1FE</code>
+      </p>
+    </div>
+
+    <!-- 选项卡 -->
+    <div class="card">
+      <h4>选项卡（无 JS，纯 radio 实现）</h4>
+      <p class="hint">激活项：蓝字 + 3px 蓝色底线；底部分隔线 2px #E8E8E8</p>
+      <div class="tabs">
+        <input type="radio" name="ds" id="ds-1" checked>
+        <input type="radio" name="ds" id="ds-2">
+        <input type="radio" name="ds" id="ds-3">
+        <div class="tab-labels">
+          <label for="ds-1">Scientific Research</label>
+          <label for="ds-2">Aerospace</label>
+          <label for="ds-3">Medical Field</label>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel">
+            <h5>Scientific Research</h5>
+            <p>Accelerate material science research with rapid iteration of ceramic structures, from microfluidic channels to lattice structures.</p>
+            <a class="btn btn-outline-dark btn-sm" href="#">Learn More →</a>
+          </div>
+          <div class="tab-panel">
+            <h5>Aerospace</h5>
+            <p>Manufacture lightweight, heat-resistant ceramic components with excellent thermal and chemical stability.</p>
+            <a class="btn btn-outline-dark btn-sm" href="#">Learn More →</a>
+          </div>
+          <div class="tab-panel">
+            <h5>Medical Field</h5>
+            <p>Produce biocompatible ceramic implants, dental frameworks, and surgical guides with patient-specific precision.</p>
+            <a class="btn btn-outline-dark btn-sm" href="#">Learn More →</a>
+          </div>
+        </div>
+      </div>
+      <p class="src" style="margin-top:12px;">标签默认 <code>#666</code> · hover 蓝 · 激活态蓝色 3px 底线 · 移动端改为横向滑动</p>
+    </div>
+
+    <!-- 材料胶囊 + 联系卡 -->
+    <div class="grid-2">
+      <div class="card" style="margin-bottom:0;">
+        <h4>材料胶囊（4 列）</h4>
+        <p class="hint">灰底卡片 + 蓝色圆角图标块</p>
+        <div class="grid-2" style="gap:12px;">
+          <span class="material-pill">
+            <span class="pill-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="currentColor"/></svg></span>
+            Oxide Ceramics
+          </span>
+          <span class="material-pill">
+            <span class="pill-icon"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5c0 1.5.7 2.8 1.8 3.7C7 12 6 13.8 6 16c0 3.3 2.7 6 6 6s6-2.7 6-6c0-2.2-1-4-2.8-5.3A5 5 0 0 0 17 7a5 5 0 0 0-5-5z" fill="currentColor"/></svg></span>
+            Bioceramics
+          </span>
+        </div>
+        <p class="src" style="margin-top:10px;">图标块 44×44 / 蓝底 / 圆角 10<br>hover：白底 + 蓝框 + 上浮 3px + 蓝色柔影</p>
+      </div>
+      <div class="card" style="margin-bottom:0;background:var(--dark);border-color:var(--dark);">
+        <h4 style="color:#fff;">联系卡片（深色区）</h4>
+        <p class="hint" style="color:rgba(255,255,255,.5);">玻璃拟态浅白底 · 蓝色圆形图标</p>
+        <div class="demo-box dark" style="border:none;background:transparent;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+          <span class="contact-card">
+            <span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z" fill="currentColor"/></svg></span>
+            <span>
+              <span class="contact-label">Phone</span><br>
+              <span class="contact-value">+86 166 7519 9919</span>
+            </span>
+          </span>
+        </div>
+        <p class="src" style="margin-top:10px;color:rgba(255,255,255,.4);">hover：蓝框 + 蓝色微透底 rgba(0,161,254,.08)</p>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="card">
+      <h4>页脚</h4>
+      <p class="hint">#0D0D0D 深底 · 4 栏（1.5fr 1fr 1fr 1fr）· 链接 55% 白 · hover 变浅蓝</p>
+      <div class="footer-demo">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;">
+          <div>
+            <p class="f-title">Brand</p>
+            <p style="font-size:13px;color:rgba(255,255,255,.5);max-width:240px;">Professional DLP Ceramic 3D Printers for research, industry, and production.</p>
+          </div>
+          <div class="f-col"><p class="f-title">Company</p><a href="#">Profile</a><a href="#">Honor</a><a href="#">Service</a></div>
+          <div class="f-col"><p class="f-title">Printer</p><a href="#">DLP Ceramic 3D Printer</a><a href="#">DIW Ceramic 3D Printer</a></div>
+          <div class="f-col"><p class="f-title">Contact</p><a href="#">Contact Information</a><a href="#">Authorized Agent</a></div>
+        </div>
+        <div class="f-bottom">
+          <span>© 2024 Shenzhen Adventure Technology Co., Ltd.</span>
+          <span>Privacy Policy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. 布局 ============ -->
+<section class="sec" id="layout">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">05 · Layout</p>
+      <h2 class="sec-title">布局与间距</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>基础尺度</h4>
+        <table class="spec">
+          <tr><th>Token</th><th>值</th><th>用途</th></tr>
+          <tr><td>容器宽</td><td><code>--max-w: 1280px</code></td><td>全站内容宽度上限</td></tr>
+          <tr><td>容器内边距</td><td><code>0 32px</code>（移动 20px）</td><td>左右留白</td></tr>
+          <tr><td>区块上下</td><td><code>96px</code>（移动 64px）</td><td>section 节奏</td></tr>
+          <tr><td>区块标题区</td><td><code>margin-bottom: 56px</code></td><td>head 与内容间距</td></tr>
+          <tr><td>区块底部按钮区</td><td><code>margin-top: 48px</code></td><td>foot 与内容间距</td></tr>
+          <tr><td>圆角基准</td><td><code>12px</code>（卡片）/ <code>0</code>（按钮）</td><td>卡片圆、按钮直角</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h4>栅格布局</h4>
+        <table class="spec">
+          <tr><th>区域</th><th>列数</th><th>间距</th></tr>
+          <tr><td>产品网格</td><td>4 列</td><td>24px</td></tr>
+          <tr><td>材料网格</td><td>4 列</td><td>20px</td></tr>
+          <tr><td>新闻网格</td><td>3 列</td><td>24px</td></tr>
+          <tr><td>联系网格</td><td>3 列</td><td>24px</td></tr>
+          <tr><td>页脚网格</td><td>1.5fr 1fr 1fr 1fr</td><td>48px</td></tr>
+          <tr><td>导航高度</td><td>72px（sticky）</td><td>—</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>响应式断点</h4>
+      <table class="spec">
+        <tr><th>断点</th><th>形态</th><th>变化</th></tr>
+        <tr>
+          <td>≥1025px</td><td>桌面</td>
+          <td>完整导航 + 4/3/3/3 列网格</td>
+        </tr>
+        <tr>
+          <td>≤1024px</td><td>平板</td>
+          <td>汉堡菜单替换导航；网格全部降为 2 列；联系/页脚变 1~2 列；区块标题改为纵向堆叠</td>
+        </tr>
+        <tr>
+          <td>≤640px</td><td>手机</td>
+          <td>网格全部 1 列；容器内边距 20px；区块 64px；Tab 横向滚动；底部按钮全宽</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. 动效 ============ -->
+<section class="sec sec-alt" id="motion">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">06 · Motion</p>
+      <h2 class="sec-title">动效系统</h2>
+      <p class="sec-desc">统一克制：<b>全部在 0.15~0.3s 内完成</b>，以"上浮 + 阴影 + 颜色翻转"三种反馈为主，不搞花哨动画。鼠标悬停下面的色块试试。</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>卡片上浮</h5><p>产品卡 hover 上移 6px、新闻卡 5px、胶囊 3px —— 层级越高浮得越多</p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>阴影加深</h5><p>默认无影 → hover 出现大阴影，如产品卡 <code>0 20px 48px rgba(0,0,0,.10)</code></p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>描边切蓝</h5><p>卡片 hover 时边框从 #E8E8E8 变为品牌蓝 —— 可交互性的统一信号</p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>按钮颜色翻转</h5><p>描边按钮 hover 时前景/背景互换；主按钮加深蓝；按下 scale(0.98)</p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>下划线生长</h5><p>导航链接 hover 时蓝色下划线从左侧 scaleX 展开（0→1，0.2s）</p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>图片微缩放</h5><p>卡片 hover 时内部图片 scale(1.05)，0.3s —— 方向统一向上放大</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. UX ============ -->
+<section class="sec" id="ux">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">07 · UX Decisions</p>
+      <h2 class="sec-title">交互体验决策（从代码读出的设计意图）</h2>
+    </div>
+
+    <div class="ux-grid">
+      <div class="ux-item"><span class="num">1</span><div><h5>吸顶导航 + 毛玻璃</h5><p>95% 白 + backdrop-filter blur(12px)，滚动时内容透出但不干扰可读性</p></div></div>
+      <div class="ux-item"><span class="num">2</span><div><h5>滚动锚点导航</h5><p>scroll-behavior: smooth，导航直链各区块 id，单页浏览无跳变</p></div></div>
+      <div class="ux-item"><span class="num">3</span><div><h5>无 JS 选项卡</h5><p>纯 CSS radio hack 实现 Tab，零依赖、零闪烁 —— 移动端横向滑动</p></div></div>
+      <div class="ux-item"><span class="num">4</span><div><h5>渐进增强首屏</h5><p>Hero 依次尝试 AVIF → WebP → MP4 视频，同时尊重 prefers-reduced-motion</p></div></div>
+      <div class="ux-item"><span class="num">5</span><div><h5>无障碍细节</h5><p>装饰性 SVG 标 aria-hidden、交互控件带 aria-label、图片带完整 alt</p></div></div>
+      <div class="ux-item"><span class="num">6</span><div><h5>性能优先</h5><p>图片全部 loading="lazy"（首屏除外）、移动端汉堡菜单收起导航</p></div></div>
+      <div class="ux-item"><span class="num">7</span><div><h5>常驻转化入口</h5><p>右下角悬浮 WhatsApp / 邮件 / 回顶，随时触达销售 —— B2B 询盘导向</p></div></div>
+      <div class="ux-item"><span class="num">8</span><div><h5>明确的操作层级</h5><p>每区块一个主按钮 + 一个次级按钮；整卡可点（产品/新闻卡）扩大热区</p></div></div>
+    </div>
+
+    <div class="card" style="margin-top:24px;background:var(--gray-100);">
+      <h4>一句话总结这套设计</h4>
+      <p style="font-size:15px;color:var(--text-mid);line-height:1.8;">
+        <b>「硬朗直角按钮 × 圆角柔和卡片 × 单一品牌蓝」</b> —— 用大字号 + 高字重建立信息层级，用蓝色只标记"可交互"，用统一的 hover 反馈（上浮 / 描边变蓝 / 颜色翻转）让整站手感一致。这是一套很适合 B2B 高端硬件的成熟风格：专业、克制、可信。
+      </p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
