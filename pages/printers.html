@@ -26,9 +26,9 @@
       <nav class="main-nav" aria-label="Main navigation">
         <ul class="nav-list">
           <li class="has-sub">
-            <a class="active">Printer</a>
+            <a class="active">Printers</a>
             <ul class="submenu">
-              <li><a class="active" href="printer-dlp.html">DLP Ceramic 3D Printer</a></li>
+              <li><a class="active" href="printers.html">DLP Ceramic 3D Printer</a></li>
               <li><a href="printer-diw.html">DIW Ceramic 3D Printer</a></li>
               <li><a href="printer-sla.html">SLA Ceramic 3D Printer</a></li>
             </ul>
@@ -120,7 +120,7 @@
         <nav class="breadcrumb" aria-label="Breadcrumb">
           <a href="../index.html">Home</a>
           <span>/</span>
-          <span>Printer</span>
+          <span>Printers</span>
         </nav>
         <h1>Ceramic <span class="hl">3D Printers</span></h1>
         <p class="page-hero-sub">DLP, DIW and SLA ceramic 3D printing equipment for research and production.</p>
@@ -128,8 +128,7 @@
     </section>
 
     <!-- Product family switch (radio) -->
-    <input type="radio" name="prod-tabs" id="prod-all" class="prod-radio" checked>
-    <input type="radio" name="prod-tabs" id="prod-dlp" class="prod-radio">
+    <input type="radio" name="prod-tabs" id="prod-dlp" class="prod-radio" checked>
     <input type="radio" name="prod-tabs" id="prod-diw" class="prod-radio">
     <input type="radio" name="prod-tabs" id="prod-sla" class="prod-radio">
 
@@ -138,7 +137,6 @@
       <div class="container product-layout">
         <aside class="product-sidebar">
           <p class="sidebar-title">Products</p>
-          <label for="prod-all">All Products</label>
           <label for="prod-dlp">DLP</label>
           <label for="prod-diw">DIW</label>
           <label for="prod-sla">SLA</label>
@@ -475,7 +473,7 @@
         <a class="footer-logo" href="../index.html#top">
           <img src="../images/logo.png" alt="Adventure Technology">
         </a>
-        <p class="footer-desc">Professional DLP Ceramic 3D Printers for research, industry, and production.</p>
+        <p class="footer-desc">Professional Ceramic 3D Printers for research, industry, and production.</p>
         <p class="footer-title">Follow Us</p>
         <div class="social-row">
           <a href="https://www.youtube.com/@ADTCeramic3dPrinter" target="_blank" rel="nofollow" aria-label="YouTube">
@@ -508,10 +506,10 @@
         </ul>
       </nav>
 
-      <nav class="footer-col" aria-label="Printer">
-        <p class="footer-title">Printer</p>
+      <nav class="footer-col" aria-label="Printers">
+        <p class="footer-title">Printers</p>
         <ul class="footer-links">
-          <li><a href="printer-dlp.html">DLP Ceramic 3D Printer</a></li>
+          <li><a href="printers.html">DLP Ceramic 3D Printer</a></li>
           <li><a href="printer-diw.html">DIW Ceramic 3D Printer</a></li>
           <li><a href="printer-sla.html">SLA Ceramic 3D Printer</a></li>
         </ul>
@@ -560,6 +558,26 @@
       <svg viewBox="0 0 24 24"><path d="M12 4l8 8h-5v8h-6v-8H4l8-8z" fill="currentColor"/></svg>
     </a>
   </div>
+
+  <script>
+    (function () {
+      var sidebar = document.querySelector('.product-sidebar');
+      if (!sidebar) return;
+      var ids = ['dlp', 'diw', 'sla'];
+      var radios = {};
+      ids.forEach(function (id) { radios[id] = document.getElementById('prod-' + id); });
+      var DEFAULT = 'dlp';
+      function activate(id) {
+        if (radios[id]) radios[id].checked = true;
+      }
+      sidebar.addEventListener('mouseover', function (e) {
+        var label = e.target.closest('label');
+        var id = label && label.getAttribute('for');
+        if (id && radios[id]) activate(id);
+      });
+      sidebar.addEventListener('mouseleave', function () { activate(DEFAULT); });
+    })();
+  </script>
 
 </body>
 </html>

@@ -947,7 +947,6 @@ a.contact-card:hover {
 }
 .product-sidebar label:hover { background: var(--gray-50); color: var(--black); }
 
-#prod-all:checked ~ .product-center label[for="prod-all"],
 #prod-dlp:checked ~ .product-center label[for="prod-dlp"],
 #prod-diw:checked ~ .product-center label[for="prod-diw"],
 #prod-sla:checked ~ .product-center label[for="prod-sla"] {
