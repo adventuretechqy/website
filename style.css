@@ -907,8 +907,7 @@ a.contact-card:hover {
   line-height: 1.55;
 }
 
-/* ---------- Product center (sidebar + tab switch) ---------- */
-.prod-radio { display: none; }
+/* ---------- Product center (sidebar + anchor nav) ---------- */
 .product-center { padding: 48px 0 72px; }
 .product-layout {
   display: grid;
@@ -935,33 +934,24 @@ a.contact-card:hover {
   letter-spacing: .6px;
   padding: 6px 12px 10px;
 }
-.product-sidebar label {
+.product-sidebar a {
   display: block;
   padding: 11px 14px;
   border-radius: 8px;
   font-size: 15px;
   font-weight: 500;
   color: var(--text-mid);
+  text-decoration: none;
   cursor: pointer;
   transition: background .15s, color .15s;
 }
-.product-sidebar label:hover { background: var(--gray-50); color: var(--black); }
-
-#prod-dlp:checked ~ .product-center label[for="prod-dlp"],
-#prod-diw:checked ~ .product-center label[for="prod-diw"],
-#prod-sla:checked ~ .product-center label[for="prod-sla"] {
-  background: var(--blue);
-  color: #fff;
-}
-
-#prod-dlp:checked ~ .product-center .config-diw,
-#prod-dlp:checked ~ .product-center .config-sla { display: none; }
-#prod-diw:checked ~ .product-center .config-dlp,
-#prod-diw:checked ~ .product-center .config-sla { display: none; }
-#prod-sla:checked ~ .product-center .config-dlp,
-#prod-sla:checked ~ .product-center .config-diw { display: none; }
+.product-sidebar a:hover { background: var(--gray-50); color: var(--black); }
 
 .product-content { min-width: 0; }
+
+/* ---------- Product family sections (anchor targets) ---------- */
+.product-family { scroll-margin-top: 88px; }
+.product-family + .product-family { margin-top: 96px; }
 
 /* ---------- Page section ---------- */
 .page-section { padding: 72px 0; }
@@ -1086,7 +1076,7 @@ a.contact-card:hover {
     background: transparent;
   }
   .product-sidebar .sidebar-title { width: 100%; }
-  .product-sidebar label {
+  .product-sidebar a {
     border: 1px solid var(--gray-200);
     background: #fff;
   }

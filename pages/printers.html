@@ -28,9 +28,9 @@
           <li class="has-sub">
             <a class="active">Printers</a>
             <ul class="submenu">
-              <li><a class="active" href="printers.html">DLP Ceramic 3D Printer</a></li>
-              <li><a href="printer-diw.html">DIW Ceramic 3D Printer</a></li>
-              <li><a href="printer-sla.html">SLA Ceramic 3D Printer</a></li>
+              <li><a href="#dlp">DLP Ceramic 3D Printer</a></li>
+              <li><a href="#diw">DIW Ceramic 3D Printer</a></li>
+              <li><a href="#sla">SLA Ceramic 3D Printer</a></li>
             </ul>
           </li>
           <li class="has-sub">
@@ -127,28 +127,23 @@
       </div>
     </section>
 
-    <!-- Product family switch (radio) -->
-    <input type="radio" name="prod-tabs" id="prod-dlp" class="prod-radio" checked>
-    <input type="radio" name="prod-tabs" id="prod-diw" class="prod-radio">
-    <input type="radio" name="prod-tabs" id="prod-sla" class="prod-radio">
-
     <!-- ============ Product Center ============ -->
     <section class="product-center">
       <div class="container product-layout">
         <aside class="product-sidebar">
           <p class="sidebar-title">Products</p>
-          <label for="prod-dlp">DLP</label>
-          <label for="prod-diw">DIW</label>
-          <label for="prod-sla">SLA</label>
+          <a href="#dlp">DLP</a>
+          <a href="#diw">DIW</a>
+          <a href="#sla">SLA</a>
         </aside>
 
         <div class="product-content">
 
           <!-- ===== DLP ===== -->
+          <section id="dlp" class="product-family">
           <article class="config-block config-dlp" id="dlp-standard">
             <div class="config-header">
               <h2>DLP Ceramic 3D Printer-Standard</h2>
-              <a class="btn btn-outline-dark" href="printer-dlp-standard.html">View Details</a>
             </div>
             <div class="config-body">
               <div class="config-main">
@@ -177,7 +172,6 @@
           <article class="config-block config-dlp" id="dlp-laboratory">
             <div class="config-header">
               <h2>DLP Ceramic 3D Printer For Laboratory</h2>
-              <a class="btn btn-outline-dark" href="printer-dlp-laboratory.html">View Details</a>
             </div>
             <div class="config-body">
               <div class="config-main">
@@ -205,7 +199,6 @@
           <article class="config-block config-dlp" id="dlp-industry">
             <div class="config-header">
               <h2>DLP Ceramic 3D Printer for Industry</h2>
-              <a class="btn btn-outline-dark" href="printer-dlp-industry.html">View Details</a>
             </div>
             <div class="config-body">
               <div class="config-main">
@@ -233,7 +226,6 @@
           <article class="config-block config-dlp" id="dlp-equipment">
             <div class="config-header">
               <h2>DLP Ceramic 3D Printing Equipment</h2>
-              <a class="btn btn-outline-dark" href="printer-dlp-equipment.html">View Details</a>
             </div>
             <div class="config-body">
               <div class="config-main">
@@ -258,12 +250,13 @@
               </div>
             </div>
           </article>
+          </section>
 
           <!-- ===== DIW ===== -->
+          <section id="diw" class="product-family">
           <article class="config-block config-diw" id="diw-starter">
             <div class="config-header">
               <h2>Direct Writing 3D Printer Starter Version</h2>
-              <a class="btn btn-outline-dark" href="printer-diw-starter.html">View Details</a>
             </div>
             <div class="config-body">
               <div class="config-main">
@@ -292,7 +285,6 @@
           <article class="config-block config-diw" id="diw-standard">
             <div class="config-header">
               <h2>Direct Writing 3D Printer Standard Version</h2>
-              <a class="btn btn-outline-dark" href="printer-diw-standard.html">View Details</a>
             </div>
             <div class="config-body">
               <div class="config-main">
@@ -320,7 +312,6 @@
           <article class="config-block config-diw" id="diw-plus">
             <div class="config-header">
               <h2>Direct Writing 3D Printer Plus Version</h2>
-              <a class="btn btn-outline-dark" href="printer-diw-plus.html">View Details</a>
             </div>
             <div class="config-body">
               <div class="config-main">
@@ -342,12 +333,13 @@
               </div>
             </div>
           </article>
+          </section>
 
           <!-- ===== SLA ===== -->
-          <article class="config-block config-sla" id="sla">
+          <section id="sla" class="product-family">
+          <article class="config-block config-sla" id="sla-printer">
             <div class="config-header">
               <h2>SLA Ceramic 3D Printer</h2>
-              <a class="btn btn-outline-dark" href="printer-sla.html">View Details</a>
             </div>
             <div class="config-body">
               <div class="config-main">
@@ -369,6 +361,7 @@
               </div>
             </div>
           </article>
+          </section>
 
         </div>
       </div>
@@ -509,9 +502,9 @@
       <nav class="footer-col" aria-label="Printers">
         <p class="footer-title">Printers</p>
         <ul class="footer-links">
-          <li><a href="printers.html">DLP Ceramic 3D Printer</a></li>
-          <li><a href="printer-diw.html">DIW Ceramic 3D Printer</a></li>
-          <li><a href="printer-sla.html">SLA Ceramic 3D Printer</a></li>
+          <li><a href="#dlp">DLP Ceramic 3D Printer</a></li>
+          <li><a href="#diw">DIW Ceramic 3D Printer</a></li>
+          <li><a href="#sla">SLA Ceramic 3D Printer</a></li>
         </ul>
         <p class="footer-title footer-title-gap">Material</p>
         <ul class="footer-links">
@@ -558,26 +551,6 @@
       <svg viewBox="0 0 24 24"><path d="M12 4l8 8h-5v8h-6v-8H4l8-8z" fill="currentColor"/></svg>
     </a>
   </div>
-
-  <script>
-    (function () {
-      var sidebar = document.querySelector('.product-sidebar');
-      if (!sidebar) return;
-      var ids = ['dlp', 'diw', 'sla'];
-      var radios = {};
-      ids.forEach(function (id) { radios[id] = document.getElementById('prod-' + id); });
-      var DEFAULT = 'dlp';
-      function activate(id) {
-        if (radios[id]) radios[id].checked = true;
-      }
-      sidebar.addEventListener('mouseover', function (e) {
-        var label = e.target.closest('label');
-        var id = label && label.getAttribute('for');
-        if (id && radios[id]) activate(id);
-      });
-      sidebar.addEventListener('mouseleave', function () { activate(DEFAULT); });
-    })();
-  </script>
 
 </body>
 </html>
