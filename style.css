@@ -907,53 +907,62 @@ a.contact-card:hover {
   line-height: 1.55;
 }
 
-/* ---------- Product family tabs ---------- */
-.product-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 32px 0 24px;
-  border-bottom: 1px solid var(--gray-200);
-  margin-bottom: 32px;
+/* ---------- Product center (sidebar + tab switch) ---------- */
+.prod-radio { display: none; }
+.product-center { padding: 48px 0 72px; }
+.product-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: start;
 }
-.product-tabs a {
-  display: inline-flex;
-  align-items: center;
-  padding: 12px 28px;
-  border-radius: 999px;
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--text-mid);
+.product-sidebar {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   background: #fff;
   border: 1px solid var(--gray-200);
-  transition: color .15s, background .15s, border-color .15s, box-shadow .15s;
+  border-radius: 12px;
+  padding: 12px;
 }
-.product-tabs a:hover { color: var(--blue); border-color: var(--blue); }
-.product-tabs a.active {
-  color: #fff;
+.product-sidebar .sidebar-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  padding: 6px 12px 10px;
+}
+.product-sidebar label {
+  display: block;
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.product-sidebar label:hover { background: var(--gray-50); color: var(--black); }
+
+#prod-all:checked ~ .product-center label[for="prod-all"],
+#prod-dlp:checked ~ .product-center label[for="prod-dlp"],
+#prod-diw:checked ~ .product-center label[for="prod-diw"],
+#prod-sla:checked ~ .product-center label[for="prod-sla"] {
   background: var(--blue);
-  border-color: var(--blue);
-  box-shadow: 0 8px 20px rgba(0,102,255,.2);
+  color: #fff;
 }
 
-/* ---------- Product family hero image ---------- */
-.product-family-hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
-  border-radius: 16px;
-  padding: 40px;
-  margin-bottom: 72px;
-  overflow: hidden;
-}
-.product-family-hero img {
-  max-width: 100%;
-  max-height: 460px;
-  object-fit: contain;
-}
+#prod-dlp:checked ~ .product-center .config-diw,
+#prod-dlp:checked ~ .product-center .config-sla { display: none; }
+#prod-diw:checked ~ .product-center .config-dlp,
+#prod-diw:checked ~ .product-center .config-sla { display: none; }
+#prod-sla:checked ~ .product-center .config-dlp,
+#prod-sla:checked ~ .product-center .config-diw { display: none; }
+
+.product-content { min-width: 0; }
 
 /* ---------- Page section ---------- */
 .page-section { padding: 72px 0; }
@@ -1048,7 +1057,7 @@ a.contact-card:hover {
 }
 .config-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 24px;
   margin-top: 28px;
 }
@@ -1067,21 +1076,30 @@ a.contact-card:hover {
 
 /* ---------- Responsive: sub-page additions ---------- */
 @media (max-width: 1024px) {
-  .product-tabs { gap: 8px; padding: 24px 0 20px; }
-  .product-tabs a { padding: 10px 20px; font-size: 14px; }
-  .product-family-hero { padding: 28px; margin-bottom: 56px; }
+  .product-layout { grid-template-columns: 1fr; }
+  .product-sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    border: none;
+    padding: 0;
+    background: transparent;
+  }
+  .product-sidebar .sidebar-title { width: 100%; }
+  .product-sidebar label {
+    border: 1px solid var(--gray-200);
+    background: #fff;
+  }
   .config-main { grid-template-columns: 1fr; }
   .config-media { min-height: 240px; }
-  .config-gallery { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 640px) {
   .page-hero { padding: 48px 0; }
-  .product-family-hero { padding: 20px; margin-bottom: 40px; }
-  .product-family-hero img { max-height: 280px; }
+  .product-center { padding: 32px 0 56px; }
   .page-section { padding: 56px 0; }
   .config-body { padding: 24px; }
   .config-header { flex-direction: column; align-items: flex-start; }
   .config-header .btn { width: 100%; text-align: center; }
-  .config-gallery { grid-template-columns: 1fr; }
 }
