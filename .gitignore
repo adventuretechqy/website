@@ -1,2 +1,5 @@
 # WorkBuddy workspace memory (local-only, do not commit)
 .workbuddy/
+
+# Extracted reference assets from the legacy site (1.2GB, recoverable via scripts)
+original-website/
