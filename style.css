@@ -1061,52 +1061,6 @@ a.contact-card:hover {
   background: var(--gray-50);
 }
 
-/* ---------- Contact bar ---------- */
-.contact-bar-section { background: var(--gray-50); }
-.contact-bar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.contact-item {
-  background: #fff;
-  border: 1px solid var(--gray-200);
-  border-radius: 12px;
-  padding: 24px;
-}
-.contact-item strong {
-  display: block;
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--black);
-  margin-bottom: 10px;
-}
-.contact-item p {
-  font-size: 14px;
-  color: var(--text-mid);
-  line-height: 1.6;
-}
-.contact-item a { color: var(--blue); }
-
-/* ---------- CTA strip ---------- */
-.cta-strip {
-  background: var(--dark);
-  color: #fff;
-  padding: 72px 0;
-  text-align: center;
-}
-.cta-strip h2 {
-  font-size: clamp(26px, 3.5vw, 36px);
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-.cta-strip p {
-  font-size: 17px;
-  color: rgba(255,255,255,.7);
-  max-width: 560px;
-  margin: 0 auto 28px;
-}
-
 /* ---------- Header active state ---------- */
 .nav-list > li > a.active { color: var(--blue); }
 .nav-list > li > a.active::after { transform: scaleX(1); }
@@ -1119,7 +1073,6 @@ a.contact-card:hover {
   .config-main { grid-template-columns: 1fr; }
   .config-media { min-height: 240px; }
   .config-gallery { grid-template-columns: repeat(2, 1fr); }
-  .contact-bar { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -1131,5 +1084,4 @@ a.contact-card:hover {
   .config-header { flex-direction: column; align-items: flex-start; }
   .config-header .btn { width: 100%; text-align: center; }
   .config-gallery { grid-template-columns: 1fr; }
-  .cta-strip { padding: 56px 0; }
 }
