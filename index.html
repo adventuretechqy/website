@@ -118,12 +118,12 @@
     <!-- ============ Hero ============ -->
     <section class="hero">
       <div class="hero-bg" aria-hidden="true">
-        <picture id="hero-banner">
+        <picture id="hero-banner" hidden>
           <source srcset="images/index/banner.avif" type="image/avif">
           <source srcset="images/index/banner.webp" type="image/webp">
           <img src="images/index/banner.jpg" alt="">
         </picture>
-        <video id="hero-video" muted loop playsinline autoplay preload="auto" poster="images/index/banner.jpg" hidden>
+        <video id="hero-video" muted loop playsinline autoplay preload="auto" poster="images/index/banner.jpg">
           <source src="images/index/banner.mp4" type="video/mp4">
         </video>
       </div>
@@ -573,35 +573,22 @@
   </div>
 
   <script>
-    /* Hero banner: prefer animated AVIF -> WebP. If neither supported, use MP4. */
+    /* Hero banner: play MP4 video as the animated background; fall back to animated image. */
     (function () {
       var picture = document.getElementById('hero-banner');
       var video = document.getElementById('hero-video');
       if (!picture || !video) return;
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-      function supportsMime(dataUri, cb) {
-        var img = new Image();
-        img.onload = function () { cb(true); };
-        img.onerror = function () { cb(false); };
-        img.src = dataUri;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        video.hidden = true;
+        picture.hidden = false;
+        return;
       }
 
-      var AVIF = 'data:image/avif;base64,AAAAIGZ0eXBhdmlmZgAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAAB0AAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAEAAAABAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQ0MAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAACVtZGF0EgAKCBgADsgQEAwgMg8f8D///8WfhwB8+ErK42A=';
-      var WEBP = 'data:image/webp;base64,UklFRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAQAcJaQAA3AA/vuUAAA=';
-
-      supportsMime(AVIF, function (avifOk) {
-        if (avifOk) return;
-        supportsMime(WEBP, function (webpOk) {
-          if (webpOk) return;
-          picture.hidden = true;
-          video.hidden = false;
-          var p = video.play();
-          if (p && p.catch) p.catch(function () {
-            video.hidden = true;
-            picture.hidden = false;
-          });
-        });
+      var p = video.play();
+      if (p && p.catch) p.catch(function () {
+        video.hidden = true;
+        picture.hidden = false;
       });
     })();
   </script>
