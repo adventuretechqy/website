@@ -827,6 +827,9 @@ svg { width: 100%; height: 100%; }
   color: #fff;
 }
 
+/* Blog listing follows the page hero — tighten the top gap (was .section's 96px). */
+.page-hero + .section { padding-top: 48px; }
+
 
 /* ============================================================
    Contact
