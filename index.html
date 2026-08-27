@@ -614,7 +614,7 @@
       if (!viewport || !prev || !next) return;
 
       var GAP = 24;
-      var AUTO_MS = 4000;
+      var AUTO_MS = 2000;
       var rafId = null;
       var autoTimer = null;
       var ticking = false;
@@ -665,15 +665,15 @@
         stopAuto();
         autoTimer = setInterval(function () {
           if (viewport.scrollLeft >= maxScroll() - 1) {
-            animateTo(0); /* rewind back to the start */
+            stopAuto(); /* reached the end — stop, don't rewind */
           } else {
             step(1);
           }
         }, AUTO_MS);
       }
 
-      prev.addEventListener('click', function () { step(-1); startAuto(); });
-      next.addEventListener('click', function () { step(1); startAuto(); });
+      prev.addEventListener('click', function () { step(-1); stopAuto(); });
+      next.addEventListener('click', function () { step(1); stopAuto(); });
 
       carousel.addEventListener('mouseenter', stopAuto);
       carousel.addEventListener('mouseleave', startAuto);
