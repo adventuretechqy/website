@@ -132,10 +132,10 @@
       <div class="container product-layout">
         <aside class="product-sidebar">
           <p class="sidebar-title">Materials</p>
-          <a href="material-oxide.html">Oxide Ceramics</a>
-          <a href="material-non-oxide.html">Non-oxide Ceramics</a>
-          <a href="material-bioceramics.html">Bioceramics</a>
-          <a href="material-resin.html">Photosensitive Resin</a>
+          <a href="#oxide">Oxide Ceramics</a>
+          <a href="#non-oxide">Non-oxide Ceramics</a>
+          <a href="#bioceramics">Bioceramics</a>
+          <a href="#resin">Photosensitive Resin</a>
         </aside>
 
         <div class="product-content">
@@ -438,6 +438,25 @@
       <svg viewBox="0 0 24 24"><path d="M12 4l8 8h-5v8h-6v-8H4l8-8z" fill="currentColor"/></svg>
     </a>
   </div>
+
+  <script>
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.product-sidebar a'));
+      var items = links.map(function (link) {
+        var id = link.getAttribute('href').replace('#', '');
+        return { link: link, sec: document.getElementById(id) };
+      }).filter(function (it) { return it.sec; });
+      var offset = 120;
+      function onScroll() {
+        var pos = window.scrollY + offset;
+        var current = items[0];
+        items.forEach(function (it) { if (it.sec.offsetTop <= pos) current = it; });
+        items.forEach(function (it) { it.link.classList.toggle('active', it === current); });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 
 </body>
 </html>

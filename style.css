@@ -944,6 +944,7 @@ a.contact-card:hover {
   transition: background .15s, color .15s;
 }
 .product-sidebar a:hover { background: var(--gray-50); color: var(--black); }
+.product-sidebar a.active { background: var(--blue); color: #fff; }
 
 .product-content { min-width: 0; }
 
