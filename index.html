@@ -653,7 +653,7 @@
       next.addEventListener('click', function () { step(1); stopAuto(); });
 
       carousel.addEventListener('mouseenter', stopAuto);
-      carousel.addEventListener('mouseleave', startAuto);
+      // carousel.addEventListener('mouseleave', startAuto); /* autoplay disabled */
 
       viewport.addEventListener('scroll', function () {
         if (!ticking) {
@@ -665,7 +665,7 @@
       window.addEventListener('resize', updateButtons);
 
       updateButtons();
-      startAuto();
+      // startAuto(); /* autoplay disabled */
     })();
   </script>
 
