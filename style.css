@@ -1049,6 +1049,7 @@ a.contact-card:hover {
   margin-top: 28px;
 }
 .config-gallery.gallery-4 { grid-template-columns: repeat(4, 1fr); }
+.config-actions { margin-top: 24px; }
 .config-gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
