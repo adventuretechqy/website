@@ -151,7 +151,12 @@
           </div>
         </div>
 
-        <div class="product-grid">
+        <div class="product-carousel">
+          <button class="carousel-btn carousel-btn-prev" type="button" aria-label="Previous products">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="carousel-viewport">
+            <div class="product-carousel-track">
           <a class="product-card" href="pages/printers.html#dlp-standard">
             <div class="product-img">
               <img src="images/printers/dlp/standard-01.png" alt="DLP Ceramic 3D Printer-Standard" loading="lazy">
@@ -247,6 +252,11 @@
               <span class="card-link">Learn More &#8594;</span>
             </div>
           </a>
+            </div>
+          </div>
+          <button class="carousel-btn carousel-btn-next" type="button" aria-label="Next products">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
 
         <div class="section-foot">
@@ -590,6 +600,95 @@
         video.hidden = true;
         picture.hidden = false;
       });
+    })();
+  </script>
+
+  <script>
+    /* Product carousel: arrow buttons + auto-play, smooth rAF scrolling. */
+    (function () {
+      var carousel = document.querySelector('.product-carousel');
+      if (!carousel) return;
+      var viewport = carousel.querySelector('.carousel-viewport');
+      var prev = carousel.querySelector('.carousel-btn-prev');
+      var next = carousel.querySelector('.carousel-btn-next');
+      if (!viewport || !prev || !next) return;
+
+      var GAP = 24;
+      var AUTO_MS = 4000;
+      var rafId = null;
+      var autoTimer = null;
+      var ticking = false;
+
+      function cardWidth() {
+        var card = viewport.querySelector('.product-card');
+        return card ? card.getBoundingClientRect().width + GAP : viewport.clientWidth;
+      }
+      function maxScroll() {
+        return viewport.scrollWidth - viewport.clientWidth;
+      }
+      function updateButtons() {
+        var max = maxScroll();
+        prev.disabled = viewport.scrollLeft <= 1;
+        next.disabled = viewport.scrollLeft >= max - 1;
+      }
+
+      function animateTo(target) {
+        var max = maxScroll();
+        target = Math.max(0, Math.min(target, max));
+        var start = viewport.scrollLeft;
+        var delta = target - start;
+        if (Math.abs(delta) < 1) return;
+        var duration = Math.min(600, 260 + Math.abs(delta) * 0.5);
+        var t0 = performance.now();
+        cancelAnimationFrame(rafId);
+        function tick(now) {
+          var t = Math.min((now - t0) / duration, 1);
+          var e = 1 - Math.pow(1 - t, 3); /* ease-out cubic */
+          viewport.scrollLeft = start + delta * e;
+          if (t < 1) {
+            rafId = requestAnimationFrame(tick);
+          } else {
+            updateButtons();
+          }
+        }
+        rafId = requestAnimationFrame(tick);
+      }
+
+      function step(dir) {
+        animateTo(viewport.scrollLeft + dir * cardWidth());
+      }
+
+      function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      }
+      function startAuto() {
+        stopAuto();
+        autoTimer = setInterval(function () {
+          if (viewport.scrollLeft >= maxScroll() - 1) {
+            animateTo(0); /* rewind back to the start */
+          } else {
+            step(1);
+          }
+        }, AUTO_MS);
+      }
+
+      prev.addEventListener('click', function () { step(-1); startAuto(); });
+      next.addEventListener('click', function () { step(1); startAuto(); });
+
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', startAuto);
+
+      viewport.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(function () { updateButtons(); ticking = false; });
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', updateButtons);
+
+      updateButtons();
+      startAuto();
     })();
   </script>
 
