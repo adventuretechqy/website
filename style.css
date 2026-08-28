@@ -410,6 +410,10 @@ svg { width: 100%; height: 100%; }
   flex: 0 0 calc(25% - 18px);
 }
 
+/* Homepage product carousel only: square image tiles + larger product (scoped, doesn't touch Materials grid or inner pages). */
+.product-carousel-track .product-img { aspect-ratio: 1 / 1; padding: 12px; }
+.product-carousel-track .product-img img { max-height: 300px; }
+
 .carousel-btn {
   position: absolute;
   top: 50%;
