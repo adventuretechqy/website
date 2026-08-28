@@ -1121,6 +1121,20 @@ a.contact-card:hover {
   line-height: 1.55;
 }
 
+/* ---------- Page hero with photo background (printers page) ---------- */
+.page-hero-photo {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .45) 100%),
+    url("images/printers/banner.jpg") center / cover no-repeat;
+}
+
+.page-hero-photo .breadcrumb { color: rgba(255, 255, 255, .8); }
+.page-hero-photo .breadcrumb a { color: rgba(255, 255, 255, .8); }
+.page-hero-photo .breadcrumb a:hover { color: #fff; }
+.page-hero-photo .breadcrumb span { color: #fff; }
+.page-hero-photo h1 { color: #fff; }
+.page-hero-photo .page-hero-sub { color: rgba(255, 255, 255, .85); }
+
 /* ---------- Product center (sidebar + anchor nav) ---------- */
 .product-center { padding: 48px 0 72px; }
 .product-layout {
