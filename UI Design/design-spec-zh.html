@@ -23,7 +23,7 @@
     --gray-300: #E0E0E0;
     --footer-bg: #0D0D0D;
     --font: 'Inter', 'Helvetica Neue', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
-    --max-w: 1200px;
+    --max-w: 1280px;
     --radius: 12px;
   }
 
@@ -52,9 +52,9 @@
   .container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
 
   /* ---------- 区块 ---------- */
-  .sec { padding: 72px 0; }
+  .sec { padding: 96px 0; }
   .sec-alt { background: var(--gray-100); }
-  .sec-head { margin-bottom: 40px; }
+  .sec-head { margin-bottom: 56px; }
   .sec-tag {
     font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
     color: var(--blue); margin-bottom: 10px;
@@ -259,17 +259,17 @@
   .ux-item h5 { font-size: 14px; font-weight: 700; color: var(--black); }
   .ux-item p { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     .grid-4 { grid-template-columns: repeat(2, 1fr); }
     .grid-3 { grid-template-columns: 1fr; }
     .grid-2, .ux-grid { grid-template-columns: 1fr; }
     .type-row { flex-direction: column; gap: 6px; }
     .type-row .info { width: 100%; }
   }
-  @media (max-width: 560px) {
+  @media (max-width: 640px) {
     .grid-4, .grid-2 { grid-template-columns: 1fr; }
+    .sec { padding: 64px 0; }
     .container { padding: 0 20px; }
-  }
 
   /* ---------- 打印分页控制 ---------- */
   @media print {
@@ -696,7 +696,7 @@
       <h4>页脚</h4>
       <p class="hint">#0D0D0D 深底 · 4 栏（1.5fr 1fr 1fr 1fr）· 链接 55% 白 · hover 变浅蓝</p>
       <div class="footer-demo">
-        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;">
           <div>
             <p class="f-title">Brand</p>
             <p style="font-size:13px;color:rgba(255,255,255,.5);max-width:240px;">Professional DLP Ceramic 3D Printers for research, industry, and production.</p>

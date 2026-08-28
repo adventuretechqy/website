@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adventure Technology · UI/UX Design Spec (Extracted from Code)</title>
+<style>
+  /* ============================================================
+     The Design Spec page itself is built with the extracted design system
+     ============================================================ */
+  :root {
+    --blue: #00A1FE;
+    --blue-light: #3DB8FE;
+    --blue-dark: #0081CB;
+    --black: #000000;
+    --dark: #1A1A1A;
+    --text: #1A1A1A;
+    --text-mid: #333333;
+    --text-muted: #666666;
+    --gray-50: #FAFAFA;
+    --gray-100: #F5F5F5;
+    --gray-200: #E8E8E8;
+    --gray-300: #E0E0E0;
+    --footer-bg: #0D0D0D;
+    --font: 'Inter', 'Helvetica Neue', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+    --max-w: 1280px;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; }
+  code, .mono {
+    font-family: 'SF Mono', 'Cascadia Code', Consolas, 'Courier New', monospace;
+    font-size: 0.86em;
+    background: var(--gray-100);
+    border: 1px solid var(--gray-200);
+    border-radius: 5px;
+    padding: 1px 6px;
+    color: var(--blue-dark);
+  }
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+
+  /* ---------- Sections ---------- */
+  .sec { padding: 96px 0; }
+  .sec-alt { background: var(--gray-100); }
+  .sec-head { margin-bottom: 56px; }
+  .sec-tag {
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 10px;
+  }
+  .sec-tag::before { content: ""; display: inline-block; width: 22px; height: 2px; background: var(--blue); vertical-align: middle; margin-right: 8px; }
+  .sec-title { font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -0.02em; color: var(--black); }
+  .sec-desc { font-size: 15px; color: var(--text-muted); margin-top: 8px; max-width: 640px; }
+
+  /* ---------- Generic cards ---------- */
+  .card {
+    background: #fff; border: 1px solid var(--gray-200); border-radius: var(--radius);
+    padding: 24px; margin-bottom: 16px;
+  }
+  .card h4 { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 6px; }
+  .card .hint { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+  .card .src { font-size: 12px; color: var(--text-muted); }
+  .card .src code { background: transparent; border: none; padding: 0; color: var(--text-muted); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+  .demo-box { border: 1px dashed var(--gray-300); border-radius: 10px; background: var(--gray-50); padding: 20px; margin-top: 8px; }
+  .demo-box.dark { background: var(--dark); }
+
+  table.spec { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 8px; }
+  table.spec th, table.spec td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+  table.spec th { font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); background: var(--gray-50); }
+  table.spec td:first-child { font-weight: 600; white-space: nowrap; }
+
+  /* ============================================================
+     Component styles extracted from the source code (reused directly)
+     ============================================================ */
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 13px 28px; font-weight: 600; font-size: 15px;
+    border: 2px solid transparent; cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s, transform .15s;
+    text-align: center; font-family: var(--font); letter-spacing: 0.01em; border-radius: 0;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
+  .btn-primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
+  .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.6); }
+  .btn-outline:hover { background: #fff; color: var(--black); border-color: #fff; }
+  .btn-outline-dark { background: transparent; color: var(--black); border-color: var(--black); }
+  .btn-outline-dark:hover { background: var(--black); color: #fff; }
+  .btn-sm { padding: 9px 18px; font-size: 14px; }
+
+  .link-arrow { font-size: 15px; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 6px; transition: color .15s, gap .15s; }
+  .link-arrow:hover { color: var(--blue-dark); gap: 10px; }
+  .card-link { font-size: 14px; font-weight: 600; color: var(--blue); }
+  .card-link:hover { color: var(--blue-dark); }
+
+  /* ---------- Navigation ---------- */
+  .demo-nav {
+    display: flex; align-items: center; gap: 20px; height: 60px; padding: 0 16px;
+    background: rgba(255,255,255,.95); border: 1px solid var(--gray-200); border-radius: 10px;
+  }
+  .demo-nav .logo-block { width: 90px; height: 24px; background: var(--gray-200); border-radius: 4px; }
+  .demo-nav ul { display: flex; gap: 2px; margin-left: 8px; }
+  .demo-nav li { position: relative; }
+  .demo-nav li a { display: block; padding: 8px 12px; font-size: 13px; font-weight: 500; color: var(--text-mid); position: relative; }
+  .demo-nav li a:hover { color: var(--blue); }
+  .demo-nav li a::after {
+    content: ""; position: absolute; left: 12px; right: 12px; bottom: 2px; height: 2px;
+    background: var(--blue); transform: scaleX(0); transform-origin: left; transition: transform .2s;
+  }
+  .demo-nav li:hover a::after { transform: scaleX(1); }
+  .demo-nav .btn { margin-left: auto; padding: 9px 18px; font-size: 14px; }
+
+  /* Dropdown menu */
+  .dd { position: relative; }
+  .dd-panel {
+    position: absolute; top: calc(100% + 6px); left: 0; min-width: 220px; background: #fff;
+    border: 1px solid var(--gray-200); border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.08); padding: 8px 0; z-index: 50;
+    opacity: 0; visibility: hidden; transform: translateY(6px); transition: all .18s;
+  }
+  .dd:hover .dd-panel, .dd:focus-within .dd-panel { opacity: 1; visibility: visible; transform: translateY(0); }
+  .dd-panel a { display: block; padding: 9px 20px; font-size: 14px; color: var(--text-mid); transition: background .15s, color .15s, padding-left .15s; }
+  .dd-panel a:hover { background: var(--gray-50); color: var(--blue); padding-left: 26px; }
+
+  /* ---------- Product card ---------- */
+  .product-card {
+    display: flex; flex-direction: column; background: #fff;
+    border: 1px solid var(--gray-200); border-radius: var(--radius); overflow: hidden;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.10); border-color: var(--blue); }
+  .product-img { background: var(--gray-50); padding: 28px 20px; display: flex; align-items: center; justify-content: center; aspect-ratio: 4/3; }
+  .product-img .ph { width: 90px; height: 90px; background: linear-gradient(135deg, #E8E8E8, #C9D6EA); border-radius: 14px; transition: transform .3s; }
+  .product-card:hover .product-img .ph { transform: scale(1.06); }
+  .product-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .product-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); }
+  .product-body h3 { font-size: 18px; font-weight: 700; color: var(--black); line-height: 1.2; }
+  .product-body p { font-size: 13px; color: var(--text-muted); line-height: 1.55; flex: 1; }
+
+  /* ---------- Tabs ---------- */
+  .tabs { position: relative; }
+  .tabs input[type="radio"] { display: none; }
+  .tab-labels { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 2px solid var(--gray-200); margin-bottom: 24px; }
+  .tab-labels label {
+    padding: 12px 20px; font-size: 13px; font-weight: 600; color: var(--text-muted);
+    cursor: pointer; position: relative; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color .15s;
+  }
+  .tab-labels label:hover { color: var(--blue); }
+  #ds-1:checked ~ .tab-labels label[for="ds-1"],
+  #ds-2:checked ~ .tab-labels label[for="ds-2"],
+  #ds-3:checked ~ .tab-labels label[for="ds-3"] { color: var(--blue); border-bottom-color: var(--blue); }
+  .tab-panels { position: relative; }
+  .tab-panel { display: none; padding: 8px 0; }
+  #ds-1:checked ~ .tab-panels .tab-panel:nth-child(1),
+  #ds-2:checked ~ .tab-panels .tab-panel:nth-child(2),
+  #ds-3:checked ~ .tab-panels .tab-panel:nth-child(3) { display: block; }
+  .tab-panel h5 { font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 10px; }
+  .tab-panel p { font-size: 14px; color: var(--text-mid); line-height: 1.7; max-width: 640px; margin-bottom: 16px; }
+
+  /* ---------- Material pill ---------- */
+  .material-pill {
+    display: flex; align-items: center; gap: 12px; padding: 20px 18px;
+    background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius);
+    font-size: 15px; font-weight: 600; color: var(--black);
+    transition: background .2s, border-color .2s, transform .15s;
+  }
+  .material-pill:hover { background: #fff; border-color: var(--blue); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,161,254,.08); }
+  .pill-icon {
+    flex: 0 0 40px; width: 40px; height: 40px; background: var(--blue); color: #fff;
+    display: flex; align-items: center; justify-content: center; border-radius: 10px; padding: 9px;
+  }
+  .pill-icon svg { width: 100%; height: 100%; }
+
+  /* ---------- Contact card (dark) ---------- */
+  .contact-card {
+    display: flex; gap: 16px; align-items: flex-start; background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius);
+    padding: 24px 22px; color: #fff; transition: border-color .2s, background .2s;
+  }
+  .contact-card:hover { border-color: var(--blue); background: rgba(0,161,254,.08); }
+  .contact-icon {
+    flex: 0 0 44px; width: 44px; height: 44px; background: var(--blue); color: #fff;
+    display: flex; align-items: center; justify-content: center; border-radius: 50%; padding: 11px;
+  }
+  .contact-icon svg { width: 100%; height: 100%; }
+  .contact-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue-light); }
+  .contact-value { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.85); }
+
+  /* ---------- Floating buttons ---------- */
+  .float-row { display: flex; gap: 10px; }
+  .float-btn {
+    width: 48px; height: 48px; background: var(--black); color: #fff;
+    display: flex; align-items: center; justify-content: center; border-radius: 50%; padding: 12px;
+    transition: background .2s, color .2s, transform .15s; box-shadow: 0 4px 20px rgba(0,0,0,.15);
+  }
+  .float-btn:hover { background: var(--blue); transform: scale(1.08); }
+  .float-btn svg { width: 100%; height: 100%; }
+  .float-btn-top { background: var(--blue); }
+  .float-btn-top:hover { background: var(--blue-dark); }
+
+  /* ---------- Footer ---------- */
+  .footer-demo { background: var(--footer-bg); color: #fff; border-radius: 12px; padding: 28px 24px; }
+  .footer-demo .f-title { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 12px; }
+  .footer-demo .f-col { display: flex; flex-direction: column; gap: 8px; }
+  .footer-demo a { font-size: 13px; color: rgba(255,255,255,.55); transition: color .15s; }
+  .footer-demo a:hover { color: var(--blue-light); }
+  .footer-demo .f-bottom { border-top: 1px solid rgba(255,255,255,.1); margin-top: 20px; padding-top: 16px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 12px; color: rgba(255,255,255,.4); }
+
+  /* ---------- Swatches ---------- */
+  .swatch { border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200); background: #fff; transition: transform .15s; }
+  .swatch:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+  .swatch .chip { height: 72px; position: relative; }
+  .swatch .body { padding: 12px 14px; }
+  .swatch .name { font-size: 13px; font-weight: 700; color: var(--black); }
+  .swatch .hex { font-family: 'SF Mono', Consolas, monospace; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .swatch .use { font-size: 12px; color: var(--text-muted); margin-top: 6px; line-height: 1.5; }
+
+  /* ---------- Type scale ---------- */
+  .type-row {
+    display: flex; align-items: baseline; gap: 24px; padding: 18px 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .type-row .demo { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .type-row .info { width: 300px; flex-shrink: 0; font-size: 12.5px; color: var(--text-muted); line-height: 1.7; }
+  .type-row .info b { color: var(--text-mid); font-weight: 600; }
+  .type-row .info code { margin-right: 4px; }
+
+  /* ---------- Motion list ---------- */
+  .motion-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--gray-200); }
+  .motion-item .dot { flex: 0 0 34px; height: 34px; border-radius: 8px; background: var(--blue); transition: all .25s; }
+  .motion-item:hover .dot { transform: translateY(-4px) scale(1.08); box-shadow: 0 8px 16px rgba(0,161,254,.25); }
+  .motion-item h5 { font-size: 14px; font-weight: 700; color: var(--black); }
+  .motion-item p { font-size: 13px; color: var(--text-muted); }
+
+  /* ---------- UX checklist ---------- */
+  .ux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ux-item { display: flex; gap: 12px; background: #fff; border: 1px solid var(--gray-200); border-radius: 10px; padding: 16px; }
+  .ux-item .num {
+    flex: 0 0 26px; height: 26px; border-radius: 8px; background: var(--blue); color: #fff;
+    font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+  .ux-item h5 { font-size: 14px; font-weight: 700; color: var(--black); }
+  .ux-item p { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
+
+  @media (max-width: 1024px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2, .ux-grid { grid-template-columns: 1fr; }
+    .type-row { flex-direction: column; gap: 6px; }
+    .type-row .info { width: 100%; }
+  }
+  @media (max-width: 640px) {
+    .grid-4, .grid-2 { grid-template-columns: 1fr; }
+    .sec { padding: 64px 0; }
+    .container { padding: 0 20px; }
+
+  /* ---------- Print pagination control ---------- */
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    /* Keep key visual blocks from splitting across two pages: swatch grids / cards / tables */
+    .grid-3, .grid-4, .grid-2, .card, .type-row, .ux-grid,
+    table.spec, .comp-list { break-inside: avoid; }
+    .swatch, .motion-item, .ux-item, .material-pill, .product-card, .spec-row { break-inside: avoid; }
+    /* Don't leave headings alone at the bottom of a page */
+    .sec-head, h4, .sec-title, .card h4, .tab-panel h5, .motion-item h5 { break-after: avoid; }
+    .sec { padding: 40px 0; }
+    .sec-head { margin-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. Colors ============ -->
+<section class="sec" id="colors">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">01 · Color</p>
+      <h2 class="sec-title">Color System</h2>
+      <p class="sec-desc">Overall strategy: <b>large neutral surfaces + a single brand blue</b>. Blue appears only on interactive elements and emphasis, keeping the visual focus concentrated.</p>
+    </div>
+
+    <h4 style="font-size:14px;font-weight:700;margin-bottom:12px;">Brand Colors · Primary Blue (the only chromatic color)</h4>
+    <div class="grid-3" style="margin-bottom:32px;">
+      <div class="swatch">
+        <div class="chip" style="background:#00A1FE;"></div>
+        <div class="body">
+          <div class="name">Brand Blue <code>--blue</code></div>
+          <div class="hex">#00A1FE</div>
+          <div class="use">Primary buttons, links, labels, icon backgrounds, selected states, hover borders</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#3DB8FE;"></div>
+        <div class="body">
+          <div class="name">Light Blue <code>--blue-light</code></div>
+          <div class="hex">#3DB8FE</div>
+          <div class="use">Blue text on dark backgrounds (hero labels, contact-card labels, footer link hover)</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#0081CB;"></div>
+        <div class="body">
+          <div class="name">Dark Blue <code>--blue-dark</code></div>
+          <div class="hex">#0081CB</div>
+          <div class="use">Hover state for primary buttons / links (interaction feedback only)</div>
+        </div>
+      </div>
+    </div>
+
+    <h4 style="font-size:14px;font-weight:700;margin-bottom:12px;">Neutrals · Text &amp; Backgrounds</h4>
+    <div class="grid-4" style="margin-bottom:32px;">
+      <div class="swatch">
+        <div class="chip" style="background:#000;"></div>
+        <div class="body">
+          <div class="name">Black <code>--black</code></div>
+          <div class="hex">#000000</div>
+          <div class="use">Large headings, dark outline button text</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#1A1A1A;"></div>
+        <div class="body">
+          <div class="name">Dark <code>--dark</code></div>
+          <div class="hex">#1A1A1A</div>
+          <div class="use">Hero / contact-section dark backgrounds, body text</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#333;"></div>
+        <div class="body">
+          <div class="name">Text Mid <code>--text-mid</code></div>
+          <div class="hex">#333333</div>
+          <div class="use">Nav links, paragraph body</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#666;"></div>
+        <div class="body">
+          <div class="name">Text Muted <code>--text-muted</code></div>
+          <div class="hex">#666666</div>
+          <div class="use">Helper text, card descriptions</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#FAFAFA;"></div>
+        <div class="body">
+          <div class="name">Gray 50 <code>--gray-50</code></div>
+          <div class="hex">#FAFAFA</div>
+          <div class="use">Product image base, pill background, dropdown hover</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#F5F5F5;"></div>
+        <div class="body">
+          <div class="name">Gray 100 <code>--gray-100</code></div>
+          <div class="hex">#F5F5F5</div>
+          <div class="use">Alternating section background (applications, news)</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#E8E8E8;"></div>
+        <div class="body">
+          <div class="name">Gray 200 <code>--gray-200</code></div>
+          <div class="hex">#E8E8E8</div>
+          <div class="use">Global borders: card borders, nav dividers, tab underline</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#0D0D0D;"></div>
+        <div class="body">
+          <div class="name">Footer <code>--footer-bg</code></div>
+          <div class="hex">#0D0D0D</div>
+          <div class="use">Footer-only dark background, one step darker than --dark</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Dark-surface overlays (Hero / Contact)</h4>
+      <p class="hint">Text readability over images/backgrounds — gradient overlays</p>
+      <div class="grid-2">
+        <div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">Hero overlay (fades left→right, 105°)</p>
+          <code>linear-gradient(105deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.72) 45%, rgba(0,0,0,.40) 100%)</code>
+        </div>
+        <div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:6px;">Dark-surface card / border</p>
+          <code>bg: rgba(255,255,255,.05)</code>　<code>border: rgba(255,255,255,.12)</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. Typography ============ -->
+<section class="sec sec-alt" id="type">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">02 · Typography</p>
+      <h2 class="sec-title">Type &amp; Hierarchy</h2>
+      <p class="sec-desc">A single sans-serif stack <code>Inter / Helvetica Neue / Segoe UI / Arial</code>; hierarchy is built from weight (500/600/700/800) and size contrast, not color.</p>
+    </div>
+
+    <div class="card" style="padding:8px 24px;">
+      <div class="type-row">
+        <div class="demo" style="font-size:clamp(36px,5.5vw,64px);font-weight:800;line-height:1.08;letter-spacing:-0.025em;color:#000;">DLP Ceramic 3D Printer.</div>
+        <div class="info"><b>Hero H1 · Display</b><br><code>clamp(36, 5.5vw, 64)px</code> / 800 / 1.08<br>Hero headline only; letter-spacing -0.025em</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:clamp(30px,4vw,44px);font-weight:800;line-height:1.15;letter-spacing:-0.02em;color:#000;">Make Anything With Ceramics</div>
+        <div class="info"><b>Section Title</b><br><code>clamp(30, 4vw, 44)px</code> / 800 / 1.15</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:clamp(24px,3vw,32px);font-weight:700;color:#000;">Scientific Research</div>
+        <div class="info"><b>Tab Panel Title</b><br><code>clamp(24, 3vw, 32)px</code> / 700</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:22px;font-weight:700;line-height:1.2;color:#000;">Laboratory</div>
+        <div class="info"><b>Product Card Title</b><br>22px / 700 / 1.2</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:17px;font-weight:700;line-height:1.4;color:#000;">Silicon Nitride Ceramic Sintering: Engineering Density…</div>
+        <div class="info"><b>News Card Title</b><br>17px / 700 / 1.4 (two-line tolerance)</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:18px;color:#666;">Four configurations for every stage — from lab R&amp;D to industrial production.</div>
+        <div class="info"><b>Section Sub / Hero Sub</b><br>18px / <code>--text-muted</code> or rgba(255,255,255,.75)</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:16px;line-height:1.6;color:#1A1A1A;">Base body text with comfortable 1.6 line height.</div>
+        <div class="info"><b>Body baseline</b><br>16px / 1.6 / <code>--text</code></div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:14px;color:#666;line-height:1.55;">700 layers per hour, multi-material compatibility, one-click printing.</div>
+        <div class="info"><b>Card description</b><br>14px / 1.55 / muted (product, news cards)</div>
+      </div>
+      <div class="type-row">
+        <div class="demo" style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00A1FE;"><span style="background:#00A1FE;display:inline-block;width:22px;height:2px;vertical-align:middle;margin-right:8px;"></span>Ceramic 3D Printers</div>
+        <div class="info"><b>Section Tag</b><br>13px / 700 / letter-spacing 2px / uppercase<br>preceded by a 22×2px blue bar</div>
+      </div>
+      <div class="type-row" style="border-bottom:none;">
+        <div class="demo" style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#00A1FE;">DLP · Label</div>
+        <div class="info"><b>Micro label</b><br>12px / 700 / letter-spacing 1–1.5px / uppercase<br>used for product-label / news-tag / contact-label</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. Buttons ============ -->
+<section class="sec" id="buttons">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">03 · Buttons</p>
+      <h2 class="sec-title">Button System</h2>
+      <p class="sec-desc">Highlight: <b>all standard buttons are sharp-cornered (radius 0)</b>, contrasting the 12px rounded cards — one of the system's most distinctive traits. Default 2px border, 15px / weight 600, press scale(0.98).</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Primary Button</h4>
+        <p class="hint">Highest-priority action site-wide, solid blue fill</p>
+        <div class="demo-box" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="btn btn-primary" href="#">Get in Touch</a>
+          <a class="btn btn-primary" href="#">All Printers</a>
+          <a class="btn btn-primary btn-sm" href="#">Compact</a>
+        </div>
+        <p class="src" style="margin-top:10px;">
+          <code>background:#00A1FE</code>　<code>hover → #0081CB</code><br>
+          <code>padding:13px 28px</code>　<code>15px / 600</code>　<code>border:2px solid</code>　<code>radius:0</code>
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Dark Outline Button · Outline (on dark backgrounds)</h4>
+        <p class="hint">Secondary actions on hero / contact sections, white semi-transparent border</p>
+        <div class="demo-box dark" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="btn btn-outline" href="#">Contact Sales</a>
+          <a class="btn btn-outline" href="#">Send Email</a>
+        </div>
+        <p class="src" style="margin-top:10px;">
+          <code>color:#fff</code>　<code>border:rgba(255,255,255,.6)</code><br>
+          <code>hover → white bg / black text</code> (the background flip is this system's signature feedback)
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Light Outline Button · Outline Dark (on light backgrounds)</h4>
+        <p class="hint">Secondary actions on white sections, black border, hover flips to black bg / white text</p>
+        <div class="demo-box" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="btn btn-outline-dark" href="#">Request a Quote</a>
+          <a class="btn btn-outline-dark btn-sm" href="#">Open Material Mode</a>
+        </div>
+        <p class="src" style="margin-top:10px;">
+          <code>color:#000</code>　<code>border:2px #000</code>　<code>hover → black bg / white text</code>
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Text Links · three strengths</h4>
+        <p class="hint">Arrow links at section right and in-card "Learn More"</p>
+        <div class="demo-box" style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+          <a class="link-arrow" href="#">All Printers →</a>
+          <span class="card-link">Learn More →</span>
+        </div>
+        <p class="src" style="margin-top:10px;">
+          <code>link-arrow</code>: 15px/600/blue, arrow gap 6px→10px on hover<br>
+          <code>card-link</code>: 14px/600/blue, darkens on hover
+        </p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h4>Circular Floating Buttons · Float (fixed bottom-right toolbar)</h4>
+      <p class="hint">WhatsApp / email / back-to-top — the only circular buttons on the site</p>
+      <div class="demo-box" style="display:flex;gap:14px;align-items:center;">
+        <div class="float-row">
+          <span class="float-btn" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.2-3.6-.8-3-1.2-4.9-4.2-5.1-4.4-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5s.8 1.9.9 2c.1.1.1.3 0 .5l-.4.6-.5.5c-.2.2-.3.3-.1.6.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.8.8c.3.2.5.3.6.4.1.2.1.7-.1 1.3z" fill="currentColor"/></svg></span>
+          <span class="float-btn" title="E-mail"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg></span>
+          <span class="float-btn float-btn-top" title="Back to top"><svg viewBox="0 0 24 24"><path d="M12 4l8 8h-5v8h-6v-8H4l8-8z" fill="currentColor"/></svg></span>
+        </div>
+        <p class="src" style="margin-left:8px;">48×48px / black bg / hover → blue + scale(1.08)<br>top button uses blue bg, hover darkens</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. Components ============ -->
+<section class="sec sec-alt" id="components">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">04 · Components</p>
+      <h2 class="sec-title">Core Components</h2>
+      <p class="sec-desc">Everything below is interactive — hover to try. All cards share 12px radius + #E8E8E8 border.</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="card">
+      <h4>Top Navigation + Dropdown</h4>
+      <p class="hint">sticky header · 95% white + 12px glass blur · 72px tall · links grow a blue underline on hover</p>
+      <nav class="demo-nav">
+        <span class="logo-block"></span>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li class="dd"><a href="#">Printer ▾</a>
+            <div class="dd-panel">
+              <a href="#">DLP Ceramic 3D Printer</a>
+              <a href="#">DIW Ceramic 3D Printer</a>
+              <a href="#">SLA Ceramic 3D Printer</a>
+            </div>
+          </li>
+          <li><a href="#">Material</a></li>
+          <li><a href="#">Application</a></li>
+        </ul>
+        <a class="btn btn-primary btn-sm" href="#">Get in Touch</a>
+      </nav>
+      <p class="src" style="margin-top:12px;">
+        Dropdown: white bg · min-width 220px · radius 8 · shadow <code>0 12px 40px rgba(0,0,0,.08)</code><br>
+        Item hover: gray bg + blue text + left indent 20→26px
+      </p>
+    </div>
+
+    <!-- Product card -->
+    <div class="card">
+      <h4>Product Card (4-column grid)</h4>
+      <p class="hint">Entire card clickable · hover lifts 6px + blue border + slight image zoom</p>
+      <div class="grid-4">
+        <a class="product-card" href="#">
+          <div class="product-img"><span class="ph"></span></div>
+          <div class="product-body">
+            <span class="product-label">DLP</span>
+            <h3>Standard</h3>
+            <p>700 layers per hour, multi-material compatibility.</p>
+            <span class="card-link">Learn More →</span>
+          </div>
+        </a>
+        <a class="product-card" href="#">
+          <div class="product-img"><span class="ph"></span></div>
+          <div class="product-body">
+            <span class="product-label">DLP</span>
+            <h3>Laboratory</h3>
+            <p>1080P UV light source, 25µm optical precision.</p>
+            <span class="card-link">Learn More →</span>
+          </div>
+        </a>
+        <a class="product-card" href="#">
+          <div class="product-img"><span class="ph"></span></div>
+          <div class="product-body">
+            <span class="product-label">DLP</span>
+            <h3>Industry</h3>
+            <p>Large-format 288×162mm, 600 layers/hour.</p>
+            <span class="card-link">Learn More →</span>
+          </div>
+        </a>
+        <a class="product-card" href="#">
+          <div class="product-img"><span class="ph"></span></div>
+          <div class="product-body">
+            <span class="product-label">DLP</span>
+            <h3>Equipment</h3>
+            <p>Compact footprint, 20mL minimum material.</p>
+            <span class="card-link">Learn More →</span>
+          </div>
+        </a>
+      </div>
+      <p class="src" style="margin-top:12px;">
+        Image area <code>#FAFAFA</code> · 4:3 · inner element scale(1.05) on hover<br>
+        Lift shadow <code>0 20px 48px rgba(0,0,0,.10)</code> · border flips to blue <code>#00A1FE</code>
+      </p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="card">
+      <h4>Tabs (no JS, pure radio)</h4>
+      <p class="hint">Active: blue text + 3px blue underline; bottom divider 2px #E8E8E8</p>
+      <div class="tabs">
+        <input type="radio" name="ds" id="ds-1" checked>
+        <input type="radio" name="ds" id="ds-2">
+        <input type="radio" name="ds" id="ds-3">
+        <div class="tab-labels">
+          <label for="ds-1">Scientific Research</label>
+          <label for="ds-2">Aerospace</label>
+          <label for="ds-3">Medical Field</label>
+        </div>
+        <div class="tab-panels">
+          <div class="tab-panel">
+            <h5>Scientific Research</h5>
+            <p>Accelerate material science research with rapid iteration of ceramic structures, from microfluidic channels to lattice structures.</p>
+            <a class="btn btn-outline-dark btn-sm" href="#">Learn More →</a>
+          </div>
+          <div class="tab-panel">
+            <h5>Aerospace</h5>
+            <p>Manufacture lightweight, heat-resistant ceramic components with excellent thermal and chemical stability.</p>
+            <a class="btn btn-outline-dark btn-sm" href="#">Learn More →</a>
+          </div>
+          <div class="tab-panel">
+            <h5>Medical Field</h5>
+            <p>Produce biocompatible ceramic implants, dental frameworks, and surgical guides with patient-specific precision.</p>
+            <a class="btn btn-outline-dark btn-sm" href="#">Learn More →</a>
+          </div>
+        </div>
+      </div>
+      <p class="src" style="margin-top:12px;">Label default <code>#666</code> · hover blue · active 3px blue underline · mobile switches to horizontal scroll</p>
+    </div>
+
+    <!-- Material pill + contact card -->
+    <div class="grid-2">
+      <div class="card" style="margin-bottom:0;">
+        <h4>Material Pill (4-column)</h4>
+        <p class="hint">Gray card + blue rounded icon block</p>
+        <div class="grid-2" style="gap:12px;">
+          <span class="material-pill">
+            <span class="pill-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="currentColor"/></svg></span>
+            Oxide Ceramics
+          </span>
+          <span class="material-pill">
+            <span class="pill-icon"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5c0 1.5.7 2.8 1.8 3.7C7 12 6 13.8 6 16c0 3.3 2.7 6 6 6s6-2.7 6-6c0-2.2-1-4-2.8-5.3A5 5 0 0 0 17 7a5 5 0 0 0-5-5z" fill="currentColor"/></svg></span>
+            Bioceramics
+          </span>
+        </div>
+        <p class="src" style="margin-top:10px;">Icon block 44×44 / blue bg / radius 10<br>hover: white bg + blue border + lift 3px + soft blue shadow</p>
+      </div>
+      <div class="card" style="margin-bottom:0;background:var(--dark);border-color:var(--dark);">
+        <h4 style="color:#fff;">Contact Card (dark surface)</h4>
+        <p class="hint" style="color:rgba(255,255,255,.5);">Glassmorphism light-white bg · blue circular icon</p>
+        <div class="demo-box dark" style="border:none;background:transparent;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;">
+          <span class="contact-card">
+            <span class="contact-icon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z" fill="currentColor"/></svg></span>
+            <span>
+              <span class="contact-label">Phone</span><br>
+              <span class="contact-value">+86 166 7519 9919</span>
+            </span>
+          </span>
+        </div>
+        <p class="src" style="margin-top:10px;color:rgba(255,255,255,.4);">hover: blue border + faint blue tint rgba(0,161,254,.08)</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card">
+      <h4>Footer</h4>
+      <p class="hint">#0D0D0D dark bg · 4 columns (1.5fr 1fr 1fr 1fr) · links 55% white · hover light blue</p>
+      <div class="footer-demo">
+        <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;">
+          <div>
+            <p class="f-title">Brand</p>
+            <p style="font-size:13px;color:rgba(255,255,255,.5);max-width:240px;">Professional DLP Ceramic 3D Printers for research, industry, and production.</p>
+          </div>
+          <div class="f-col"><p class="f-title">Company</p><a href="#">Profile</a><a href="#">Honor</a><a href="#">Service</a></div>
+          <div class="f-col"><p class="f-title">Printer</p><a href="#">DLP Ceramic 3D Printer</a><a href="#">DIW Ceramic 3D Printer</a></div>
+          <div class="f-col"><p class="f-title">Contact</p><a href="#">Contact Information</a><a href="#">Authorized Agent</a></div>
+        </div>
+        <div class="f-bottom">
+          <span>© 2024 Shenzhen Adventure Technology Co., Ltd.</span>
+          <span>Privacy Policy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. Layout ============ -->
+<section class="sec" id="layout">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">05 · Layout</p>
+      <h2 class="sec-title">Layout &amp; Spacing</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Base Scale</h4>
+        <table class="spec">
+          <tr><th>Token</th><th>Value</th><th>Purpose</th></tr>
+          <tr><td>Container width</td><td><code>--max-w: 1280px</code></td><td>site-wide content max width</td></tr>
+          <tr><td>Container padding</td><td><code>0 32px</code> (20px mobile)</td><td>left/right gutters</td></tr>
+          <tr><td>Section padding</td><td><code>96px</code> (64px mobile)</td><td>section rhythm</td></tr>
+          <tr><td>Section header</td><td><code>margin-bottom: 56px</code></td><td>space between head and content</td></tr>
+          <tr><td>Section footer CTA</td><td><code>margin-top: 48px</code></td><td>space between foot and content</td></tr>
+          <tr><td>Corner radius base</td><td><code>12px</code> (cards) / <code>0</code> (buttons)</td><td>cards rounded, buttons square</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h4>Grid Layout</h4>
+        <table class="spec">
+          <tr><th>Area</th><th>Columns</th><th>Gap</th></tr>
+          <tr><td>Product grid</td><td>4 columns</td><td>24px</td></tr>
+          <tr><td>Material grid</td><td>4 columns</td><td>20px</td></tr>
+          <tr><td>News grid</td><td>3 columns</td><td>24px</td></tr>
+          <tr><td>Contact grid</td><td>3 columns</td><td>24px</td></tr>
+          <tr><td>Footer grid</td><td>1.5fr 1fr 1fr 1fr</td><td>48px</td></tr>
+          <tr><td>Nav height</td><td>72px (sticky)</td><td>—</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>Responsive Breakpoints</h4>
+      <table class="spec">
+        <tr><th>Breakpoint</th><th>Form</th><th>Changes</th></tr>
+        <tr>
+          <td>≥1025px</td><td>Desktop</td>
+          <td>full nav + 4/3/3/3 column grids</td>
+        </tr>
+        <tr>
+          <td>≤1024px</td><td>Tablet</td>
+          <td>hamburger replaces nav; grids drop to 2 columns; contact/footer 1–2 columns; section titles stack vertically</td>
+        </tr>
+        <tr>
+          <td>≤640px</td><td>Mobile</td>
+          <td>grids all 1 column; container padding 20px; sections 64px; tabs horizontal scroll; bottom buttons full width</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. Motion ============ -->
+<section class="sec sec-alt" id="motion">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">06 · Motion</p>
+      <h2 class="sec-title">Motion System</h2>
+      <p class="sec-desc">Unified and restrained: <b>everything completes within 0.15–0.3s</b>, built on three feedback patterns — lift + shadow + color flip. No flashy animation. Hover the swatches below.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>Card lift</h5><p>Product card lifts 6px, news card 5px, pill 3px — higher hierarchy lifts more</p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>Shadow deepen</h5><p>No shadow by default → large shadow on hover, e.g. product card <code>0 20px 48px rgba(0,0,0,.10)</code></p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>Border flips blue</h5><p>On hover the border goes from #E8E8E8 to brand blue — a unified signal of interactivity</p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>Button color flip</h5><p>Outline buttons swap foreground/background on hover; primary buttons darken; press scale(0.98)</p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>Underline grow</h5><p>On hover the nav link's blue underline expands via scaleX from the left (0→1, 0.2s)</p></div>
+      </div>
+      <div class="motion-item">
+        <span class="dot"></span>
+        <div><h5>Image micro-zoom</h5><p>Inner image scale(1.05) on card hover, 0.3s — consistently zooming upward</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. UX ============ -->
+<section class="sec" id="ux">
+  <div class="container">
+    <div class="sec-head">
+      <p class="sec-tag">07 · UX Decisions</p>
+      <h2 class="sec-title">UX Decisions (design intent read from the code)</h2>
+    </div>
+
+    <div class="ux-grid">
+      <div class="ux-item"><span class="num">1</span><div><h5>Sticky nav + glass</h5><p>95% white + backdrop-filter blur(12px); content shows through while scrolling without hurting readability</p></div></div>
+      <div class="ux-item"><span class="num">2</span><div><h5>Scroll anchor nav</h5><p>scroll-behavior: smooth; nav links straight to section ids for jump-free single-page browsing</p></div></div>
+      <div class="ux-item"><span class="num">3</span><div><h5>JS-free tabs</h5><p>Pure CSS radio hack for tabs, zero dependencies, zero flicker — horizontal scroll on mobile</p></div></div>
+      <div class="ux-item"><span class="num">4</span><div><h5>Progressive hero</h5><p>Hero tries AVIF → WebP → MP4 video in order, while respecting prefers-reduced-motion</p></div></div>
+      <div class="ux-item"><span class="num">5</span><div><h5>Accessibility details</h5><p>Decorative SVGs marked aria-hidden, interactive controls carry aria-label, images have full alt</p></div></div>
+      <div class="ux-item"><span class="num">6</span><div><h5>Performance first</h5><p>All images loading="lazy" (except above-the-fold); hamburger collapses nav on mobile</p></div></div>
+      <div class="ux-item"><span class="num">7</span><div><h5>Persistent conversion entry</h5><p>Floating WhatsApp / email / back-to-top at bottom-right, always within reach of sales — B2B inquiry-oriented</p></div></div>
+      <div class="ux-item"><span class="num">8</span><div><h5>Clear action hierarchy</h5><p>One primary + one secondary button per section; whole cards clickable (product/news) to enlarge hit areas</p></div></div>
+    </div>
+
+    <div class="card" style="margin-top:24px;background:var(--gray-100);">
+      <h4>This system in one sentence</h4>
+      <p style="font-size:15px;color:var(--text-mid);line-height:1.8;">
+        <b>"Sharp-cornered buttons × soft rounded cards × a single brand blue"</b> — build hierarchy with large type + heavy weights, use blue only to mark "interactive", and keep the whole site feeling consistent through unified hover feedback (lift / border-blue / color-flip). A mature style well suited to B2B premium hardware: professional, restrained, trustworthy.
+      </p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
