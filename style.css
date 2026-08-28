@@ -1138,6 +1138,7 @@ a.contact-card:hover {
     linear-gradient(180deg, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .45) 100%),
     url("images/service/hero.jpg") center / cover no-repeat;
 }
+.page-hero-photo-service .page-hero-sub { max-width: 960px; }
 
 .page-hero-photo .breadcrumb,
 .page-hero-photo-material .breadcrumb,
