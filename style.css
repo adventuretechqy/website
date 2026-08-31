@@ -1295,6 +1295,7 @@ a.contact-card:hover {
   color: var(--black);
   margin-bottom: 20px;
 }
+.config-points h3:not(:first-child) { margin-top: 28px; }
 .config-points ul {
   list-style: none;
   display: flex;
