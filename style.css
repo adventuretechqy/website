@@ -1342,7 +1342,7 @@ a.contact-card:hover {
   margin-top: 28px;
 }
 .config-gallery.gallery-4 { grid-template-columns: repeat(4, 1fr); }
-.config-actions { margin-top: 24px; }
+.config-actions { margin-top: 24px; text-align: center; }
 .config-gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -1594,6 +1594,8 @@ a.contact-card:hover {
 }
 .form-field textarea { min-height: 140px; resize: vertical; }
 .form-submit { margin-top: 24px; }
+.form-actions { text-align: center; }
+.service-cta { text-align: center; }
 .form-note {
   font-size: 13px;
   color: var(--text-muted);
