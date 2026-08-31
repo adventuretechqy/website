@@ -1122,7 +1122,7 @@ a.contact-card:hover {
     linear-gradient(180deg, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .45) 100%),
     url("images/material/banner.jpg") center / cover no-repeat;
 }
-.page-hero-photo-material .page-hero-sub { max-width: 760px; }
+.page-hero-photo-material .page-hero-sub { max-width: none; }
 .page-hero-photo-service {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .45) 100%),
