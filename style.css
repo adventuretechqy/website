@@ -1388,6 +1388,36 @@ a.contact-card:hover {
 .gallery-slider .slider-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 .gallery-slider .slider-btn:hover:not(:disabled) { background: var(--blue); color: #fff; }
 .gallery-slider .slider-btn:disabled { opacity: .35; cursor: default; }
+.gallery-slider .slider-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+.gallery-slider .slider-thumb {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--gray-50);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color .2s;
+}
+.gallery-slider .slider-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  background: var(--gray-50);
+  display: block;
+}
+.gallery-slider .slider-thumb:hover { border-color: var(--blue-light); }
+.gallery-slider .slider-thumb.is-active { border-color: var(--blue); }
 .config-actions { margin-top: 40px; text-align: center; }
 .config-gallery img {
   width: 100%;
