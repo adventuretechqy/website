@@ -127,17 +127,7 @@ svg { width: 100%; height: 100%; }
   color: var(--blue);
   margin-bottom: 14px;
 }
-.section-tag::before {
-  content: "";
-  display: inline-block;
-  width: 24px;
-  height: 2px;
-  background: var(--blue);
-  vertical-align: middle;
-  margin-right: 10px;
-}
 .section-tag-light { color: #fff; }
-.section-tag-light::before { background: #fff; }
 
 .section-title {
   font-size: clamp(30px, 4vw, 44px);
