@@ -1275,24 +1275,18 @@ a.contact-card:hover {
 }
 .config-main {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
   align-items: start;
 }
-.config-media {
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
-  border-radius: 12px;
-  padding: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 320px;
-}
+.config-media { display: block; }
 .config-media img {
-  max-width: 100%;
-  max-height: 360px;
-  object-fit: contain;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
 }
 .config-points { padding: 8px 0; }
 .config-points h3 {
@@ -1342,6 +1336,8 @@ a.contact-card:hover {
   margin-top: 28px;
 }
 .config-gallery.gallery-4 { grid-template-columns: repeat(4, 1fr); }
+.config-gallery.gallery-square { grid-template-columns: repeat(2, 1fr); }
+.config-gallery.gallery-square img { aspect-ratio: 1 / 1; }
 .config-actions { margin-top: 40px; text-align: center; }
 .config-gallery img {
   width: 100%;
@@ -1385,6 +1381,7 @@ a.contact-card:hover {
   .config-body { padding: 24px; }
   .config-header { flex-direction: column; align-items: flex-start; }
   .config-header .btn { width: 100%; text-align: center; }
+  .config-gallery.gallery-square { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
