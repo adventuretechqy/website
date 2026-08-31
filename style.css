@@ -1139,25 +1139,37 @@ a.contact-card:hover {
     url("images/service/hero.jpg") center / cover no-repeat;
 }
 .page-hero-photo-service .page-hero-sub { max-width: 960px; }
+.page-hero-photo-application {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, .55) 0%, rgba(0, 0, 0, .45) 100%),
+    url("images/application/banner.jpg") center / cover no-repeat;
+}
+.page-hero-photo-application .page-hero-sub { max-width: 760px; }
 
 .page-hero-photo .breadcrumb,
 .page-hero-photo-material .breadcrumb,
-.page-hero-photo-service .breadcrumb { color: rgba(255, 255, 255, .8); }
+.page-hero-photo-service .breadcrumb,
+.page-hero-photo-application .breadcrumb { color: rgba(255, 255, 255, .8); }
 .page-hero-photo .breadcrumb a,
 .page-hero-photo-material .breadcrumb a,
-.page-hero-photo-service .breadcrumb a { color: rgba(255, 255, 255, .8); }
+.page-hero-photo-service .breadcrumb a,
+.page-hero-photo-application .breadcrumb a { color: rgba(255, 255, 255, .8); }
 .page-hero-photo .breadcrumb a:hover,
 .page-hero-photo-material .breadcrumb a:hover,
-.page-hero-photo-service .breadcrumb a:hover { color: #fff; }
+.page-hero-photo-service .breadcrumb a:hover,
+.page-hero-photo-application .breadcrumb a:hover { color: #fff; }
 .page-hero-photo .breadcrumb span,
 .page-hero-photo-material .breadcrumb span,
-.page-hero-photo-service .breadcrumb span { color: #fff; }
+.page-hero-photo-service .breadcrumb span,
+.page-hero-photo-application .breadcrumb span { color: #fff; }
 .page-hero-photo h1,
 .page-hero-photo-material h1,
-.page-hero-photo-service h1 { color: #fff; }
+.page-hero-photo-service h1,
+.page-hero-photo-application h1 { color: #fff; }
 .page-hero-photo .page-hero-sub,
 .page-hero-photo-material .page-hero-sub,
-.page-hero-photo-service .page-hero-sub { color: rgba(255, 255, 255, .85); }
+.page-hero-photo-service .page-hero-sub,
+.page-hero-photo-application .page-hero-sub { color: rgba(255, 255, 255, .85); }
 
 /* ---------- Product center (sidebar + anchor nav) ---------- */
 .product-center { padding: 48px 0 72px; }
