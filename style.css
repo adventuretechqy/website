@@ -1791,8 +1791,9 @@ a.contact-card:hover {
   border-radius: 10px;
   border: 1px solid var(--gray-200);
   margin-top: 16px;
-  max-height: 400px;
-  object-fit: cover;
+  max-height: 340px;
+  object-fit: contain;
+  background: #f6f7f9;
 }
 
 @media (max-width: 1024px) {
