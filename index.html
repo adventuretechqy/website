@@ -689,28 +689,6 @@
       prev.addEventListener('click', function () { step(-1); stopAuto(); });
       next.addEventListener('click', function () { step(1); stopAuto(); });
 
-      /* Mobile only: the arrows default to top:50% of the whole carousel
-         (image + text card), which lands them below the image center. Align
-         them to the vertical center of the square product image instead.
-         Desktop (>820px) keeps the default CSS — clear any inline top set
-         while the window was narrow so resizing back doesn't leave arrows
-         stuck at the mobile position. */
-      function centerArrows() {
-        if (window.innerWidth > 820) {
-          prev.style.top = next.style.top = '';
-          return;
-        }
-        var card = viewport.querySelector('.product-card');
-        var img = card ? card.querySelector('.product-img') : null;
-        if (!img) return;
-        var cRect = carousel.getBoundingClientRect();
-        var iRect = img.getBoundingClientRect();
-        var top = iRect.top - cRect.top + iRect.height / 2;
-        prev.style.top = next.style.top = top + 'px';
-      }
-      window.addEventListener('resize', centerArrows);
-      centerArrows();
-
       carousel.addEventListener('mouseenter', stopAuto);
       // carousel.addEventListener('mouseleave', startAuto); /* autoplay disabled */
 

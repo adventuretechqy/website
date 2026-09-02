@@ -1137,6 +1137,23 @@ a.contact-card:hover {
   .section { padding: 64px 0; }
 
   .product-grid { grid-template-columns: 1fr; }
+
+  /* Printers carousel on mobile: same pure-swipe pattern as the card
+     sections below — hide the arrow buttons, make the track a snap-scroll
+     scroller. Desktop keeps the arrows + auto-scroll carousel. */
+  .products .carousel-viewport {
+    padding: 4px 0 16px;
+    margin: 0;
+    scroll-snap-type: x mandatory;
+  }
+  .products .carousel-viewport::-webkit-scrollbar { display: none; }
+  .products .product-carousel-track { gap: 16px; }
+  .products .product-carousel-track .product-card {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+  .products .carousel-btn { display: none; }
+
   .product-carousel-track .product-card { flex-basis: 100%; }
   .carousel-btn { width: 36px; height: 36px; }
   .carousel-btn svg { width: 18px; height: 18px; }
