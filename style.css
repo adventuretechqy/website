@@ -1504,6 +1504,16 @@ a.contact-card:hover {
 }
 .gallery-slider .slider-thumb:hover { border-color: var(--blue-light); }
 .gallery-slider .slider-thumb.is-active { border-color: var(--blue); }
+
+/* Mobile only: the arrows use top:50% of the whole .gallery-slider, which also
+   contains the thumbnails row (12px margin + 56px thumb). Shift the arrows up
+   by half of that (34px) so they sit on the vertical center of the square image. */
+@media (max-width: 820px) {
+  .gallery-slider .slider-btn-prev,
+  .gallery-slider .slider-btn-next {
+    top: calc(50% - 34px);
+  }
+}
 .config-actions { margin-top: 40px; text-align: center; }
 .config-gallery img {
   width: 100%;
