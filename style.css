@@ -1091,6 +1091,63 @@ a.contact-card:hover {
   .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 
+  /* Up to iPad portrait/landscape (≤1024px): homepage card sections become
+     swipeable horizontal scrollers (Printers / Materials / Applications /
+     Services / News & Articles). Desktop (>1024px) keeps the grid / arrow
+     carousel — these rules are scoped to the homepage sections. No negative
+     margin here: a -20px left margin made the browser auto-scroll the
+     container by 20px on load, pushing the first card flush to the edge. */
+  .products .carousel-viewport {
+    padding: 4px 0 16px;
+    margin: 0;
+    scroll-snap-type: x mandatory;
+  }
+  .products .carousel-viewport::-webkit-scrollbar { display: none; }
+  .products .product-carousel-track { gap: 16px; }
+  .products .product-carousel-track .product-card {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+  .products .carousel-btn { display: none; }
+
+  .materials .product-grid,
+  .news .news-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    gap: 16px;
+    padding: 4px 0 16px;
+  }
+  .materials .product-grid::-webkit-scrollbar,
+  .news .news-grid::-webkit-scrollbar { display: none; }
+  .materials .product-grid .product-card,
+  .news .news-grid .news-card {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+
+  .applications .app-cards,
+  .services .app-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    gap: 16px;
+    padding: 4px 0 16px;
+  }
+  .applications .app-cards::-webkit-scrollbar,
+  .services .app-cards::-webkit-scrollbar { display: none; }
+  .applications .app-card,
+  .services .app-card {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+
   .section-head { flex-direction: column; align-items: flex-start; }
   .hero-text { max-width: 100%; }
 }
@@ -1137,23 +1194,6 @@ a.contact-card:hover {
   .section { padding: 64px 0; }
 
   .product-grid { grid-template-columns: 1fr; }
-
-  /* Printers carousel on mobile: same pure-swipe pattern as the card
-     sections below — hide the arrow buttons, make the track a snap-scroll
-     scroller. Desktop keeps the arrows + auto-scroll carousel. */
-  .products .carousel-viewport {
-    padding: 4px 0 16px;
-    margin: 0;
-    scroll-snap-type: x mandatory;
-  }
-  .products .carousel-viewport::-webkit-scrollbar { display: none; }
-  .products .product-carousel-track { gap: 16px; }
-  .products .product-carousel-track .product-card {
-    flex: 0 0 84%;
-    scroll-snap-align: start;
-  }
-  .products .carousel-btn { display: none; }
-
   .product-carousel-track .product-card { flex-basis: 100%; }
   .carousel-btn { width: 36px; height: 36px; }
   .carousel-btn svg { width: 18px; height: 18px; }
@@ -1161,63 +1201,6 @@ a.contact-card:hover {
   .carousel-btn-next { right: 0; }
   .material-grid { grid-template-columns: 1fr; }
   .news-grid { grid-template-columns: 1fr; }
-
-  /* Mobile only: homepage card sections become swipeable horizontal scrollers
-     (Materials / Applications / Services / News & Articles). Desktop grid
-     layout is untouched — these rules are scoped to the homepage sections
-     and only apply below 640px. Note: no negative margin here — a -20px
-     left margin made the browser auto-scroll the container by 20px on load,
-     pushing the first card flush against the viewport edge. */
-  .materials .product-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    gap: 16px;
-    padding: 4px 0 16px;
-  }
-  .materials .product-grid::-webkit-scrollbar { display: none; }
-  .materials .product-grid .product-card {
-    flex: 0 0 84%;
-    scroll-snap-align: start;
-  }
-
-  .news .news-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    gap: 16px;
-    padding: 4px 0 16px;
-  }
-  .news .news-grid::-webkit-scrollbar { display: none; }
-  .news .news-grid .news-card {
-    flex: 0 0 84%;
-    scroll-snap-align: start;
-  }
-
-  .applications .app-cards,
-  .services .app-cards {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    gap: 16px;
-    padding: 4px 0 16px;
-  }
-  .applications .app-cards::-webkit-scrollbar,
-  .services .app-cards::-webkit-scrollbar { display: none; }
-  .applications .app-card,
-  .services .app-card {
-    flex: 0 0 84%;
-    scroll-snap-align: start;
-  }
 
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
 
