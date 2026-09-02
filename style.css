@@ -1072,6 +1072,28 @@ a.contact-card:hover {
    Responsive
    ============================================================ */
 @media (max-width: 1024px) {
+  /* Tablet (incl. iPad Pro portrait): keep the full horizontal nav,
+     hide the social icons and compact spacing so it fits comfortably. */
+  .nav-list > li > a { font-size: 13px; padding: 10px 8px; }
+  .logo img { height: 30px; }
+  .header-actions .btn { font-size: 14px; padding: 10px 18px; }
+
+  .header-inner { gap: 16px; }
+  .header-actions { margin-left: auto; }
+  .header-social { display: none; }
+
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-carousel-track .product-card { flex-basis: calc(50% - 12px); }
+  .material-grid { grid-template-columns: repeat(2, 1fr); }
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+
+  .section-head { flex-direction: column; align-items: flex-start; }
+  .hero-text { max-width: 100%; }
+}
+
+@media (max-width: 820px) {
   .hamburger { display: flex; }
   .nav-toggle { display: block; position: absolute; opacity: 0; pointer-events: none; }
 
@@ -1091,7 +1113,7 @@ a.contact-card:hover {
   .nav-toggle:checked ~ .main-nav { display: block; }
 
   .nav-list { flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0; }
-  .nav-list > li > a { padding: 13px 24px; }
+  .nav-list > li > a { padding: 13px 24px; font-size: 16px; }
   .nav-list > li > a::after { display: none; }
   .has-sub > a::after { display: none; }
 
@@ -1106,20 +1128,6 @@ a.contact-card:hover {
   }
   .submenu a { padding: 9px 40px; }
   .submenu a:hover { padding-left: 46px; }
-
-  .header-inner { gap: 16px; }
-  .header-actions { margin-left: auto; }
-  .header-social { display: none; }
-
-  .product-grid { grid-template-columns: repeat(2, 1fr); }
-  .product-carousel-track .product-card { flex-basis: calc(50% - 12px); }
-  .material-grid { grid-template-columns: repeat(2, 1fr); }
-  .news-grid { grid-template-columns: repeat(2, 1fr); }
-  .contact-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-
-  .section-head { flex-direction: column; align-items: flex-start; }
-  .hero-text { max-width: 100%; }
 }
 
 @media (max-width: 640px) {
