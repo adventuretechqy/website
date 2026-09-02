@@ -3,3 +3,6 @@
 
 # Extracted reference assets from the legacy site (1.2GB, recoverable via scripts)
 original-website/
+
+# Local dev/build scripts (not part of the site source)
+scripts/
