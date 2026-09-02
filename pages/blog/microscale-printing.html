@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Novel High-Speed Microscale 3D Printing Technique for High-Resolution Fabrication of Shape Specific Particles | Adventure Technology</title>
+  <meta name="description" content="The research uses low-cost 3D printing to create ceramic lithium battery mesh electrodes, improving performance through optimized design and printing parameters, achieving high capacity for thick electrodes.">
+  <link rel="icon" href="../../images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body id="top">
+
+<header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../index.html#top">
+        <img src="../../images/logo.png" alt="Adventure Technology">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+      <label for="nav-toggle" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li class="has-sub">
+            <a href="../printers.html">Printers</a>
+            <ul class="submenu">
+              <li><a href="../printers.html#dlp">DLP Ceramic 3D Printer</a></li>
+              <li><a href="../printers.html#diw">DIW Ceramic 3D Printer</a></li>
+              <li><a href="../printers.html#sla">SLA Ceramic 3D Printer</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../material.html">Material</a>
+            <ul class="submenu">
+              <li><a href="../material/oxide.html">Oxide Ceramics</a></li>
+              <li><a href="../material/non-oxide.html">Non-oxide Ceramics</a></li>
+              <li><a href="../material/bioceramics.html">Bioceramics</a></li>
+              <li><a href="../material/resin.html">Photosensitive Resin</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../service.html">Service</a>
+            <ul class="submenu">
+              <li><a href="../service.html#description">Product Description</a></li>
+              <li><a href="../service.html#case">Customer Case</a></li>
+              <li><a href="../service.html#request">Print Service Request</a></li>
+              <li><a href="../service.html#process">Order Process</a></li>
+              <li><a href="../service.html#related">Related Products</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../application.html">Application</a>
+            <ul class="submenu">
+              <li><a href="../application.html#research">Research</a></li>
+              <li><a href="../application.html#industry">Industry</a></li>
+              <li><a href="../application.html#medical">Medical</a></li>
+              <li><a href="../application.html#artistic">Artistic Creation</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a class="active" href="../blog.html">Blog</a>
+            <ul class="submenu">
+              <li><a href="../blog-industry.html">Industry Dynamics</a></li>
+              <li><a href="../blog-print-case.html">Print Case</a></li>
+              <li><a href="../blog-enterprise.html">Enterprise News</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../contact.html">Contact Us</a>
+            <ul class="submenu">
+              <li><a href="../contact.html#information">Contact Information</a></li>
+              <li><a href="../contact.html#agent">Authorized Agent</a></li>
+              <li><a href="../contact.html#recruitment">Talent Recruitment</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../about.html">About Us</a>
+            <ul class="submenu">
+              <li><a href="../about.html#profile">Profile</a></li>
+              <li><a href="../about.html#honor">Honor</a></li>
+              <li><a href="../about.html#development">Development</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="header-social" aria-label="Social media">
+          <a href="https://www.youtube.com/@ADTCeramic3dPrinter" target="_blank" rel="nofollow" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2zM9.8 15.3V8.7l6 3.3-6 3.3z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61571171140390" target="_blank" rel="nofollow" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 8h3V5h-3a4 4 0 0 0-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9a1 1 0 0 1 1-1z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/adventure-tech-3d-printing-64b73134b/" target="_blank" rel="nofollow" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.instagram.com/adt_ceramic3dprint/" target="_blank" rel="nofollow" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.81s-.01 3.54-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.3.06-1.7.07-4.9.07s-3.6-.01-4.9-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.11 15.54 2.1 15.16 2.1 12s.01-3.54.07-4.81C2.32 3.96 3.84 2.42 7.1 2.27 8.4 2.21 8.8 2.2 12 2.2zm0 4.8a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm6.2-8.4a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://x.com/ADT__3dPrint" target="_blank" rel="nofollow" aria-label="X" title="X">
+            <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.5 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.9H5.3L17.8 20z" fill="currentColor"/></svg>
+          </a>
+        </div>
+        <a class="btn btn-primary" href="../../index.html#contact">Get in Touch</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ Article Hero ============ -->
+    <section class="page-hero page-hero-photo-blog">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span>/</span>
+          <a href="../blog.html">Blog</a>
+          <span>/</span>
+          <a href="../blog-enterprise.html">Enterprise News</a>
+        </nav>
+        <h1>A Novel High-Speed Microscale 3D Printing Technique for High-Resolution Fabrication of Shape Specific Particles</h1>
+        <p class="article-meta">
+          <span class="article-tag">Enterprise News</span>
+          <span class="article-date">2025-10-23</span>
+          <span class="article-author">By </span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ Article Body ============ -->
+    <article class="section article">
+      <div class="container">
+        <div class="article-body">
+<p>Recently, researchers led by Jason M. Kronenfeld at Stanford University published a study in <i>Nature</i> titled <i>&ldquo;Roll-to-roll, high-resolution 3D printing of shape-specific particles&rdquo;</i>. The study introduces a scalable, high-resolution 3D printing technique for the fabrication of shape-specific particles using roll-to-roll continuous liquid interface production (r2rCLIP).</p>
+<p>
+<br />
+<img src="../../images/blog/microscale-printing/img-003.png" alt="" loading="lazy">
+<br />
+<br />
+Original Article: <a href="https://www.nature.com/articles/s41586-024-07061-4?utm_source=chatgpt.com">https:<u>//www.nature.com/articles/s41586-024-07061-4</u>
+</a>
+</p>
+<p>
+<strong>Research Content</strong>
+<br />
+Particles ranging from several hundred micrometers down to the nanoscale are ubiquitous key components in many advanced applications, including biomedical devices, drug delivery systems, microelectronics, and energy storage systems. They also exhibit inherent material versatility in microfluidics, particulate systems, and abrasives.<br />
+<br />
+Traditional particle fabrication techniques&mdash;ranging from grinding and emulsification to advanced molding and flow lithography&mdash;can generally be classified as bottom-up or top-down approaches. In this study, the authors employ top-down particle fabrication strategies such as direct lithography, single-step roll-to-roll soft lithography, and multi-step molding, as well as scalable methods like Particle Replication In Nonwetting Templates (PRINT) and Stamp Assembly of Polymer Layers (SEAL), which integrate photolithographic techniques to achieve two-dimensional (2D) geometric control.<br />
+<br />
+This paper presents a particle fabrication technology that achieves simultaneous control of all microscale three-dimensional (3D) geometrical parameters while maintaining complexity, speed, material versatility, and scalability. The authors introduce a scalable, high-resolution 3D printing technique based on roll-to-roll continuous liquid interface production (r2rCLIP). As illustrated in Figure 1, r2rCLIP combines micron-level optical resolution with a continuously moving film substrate&mdash;replacing the static build platform&mdash;to rapidly fabricate and collect particles made from diverse materials and with complex 3D geometries.<br />
+ </p>
+<p>
+<br />
+<img src="../../images/blog/microscale-printing/img-002.png" alt="" loading="lazy">
+<br />
+Figure 1: r2rCLIP as a rapid manufacturing process for particles with complex geometries</p>
+<p>
+<br />
+(a) The r2rCLIP process is a quasi-continuous technique in which simple to complex 3D geometries are first digitally designed and then sliced into 2D image layers. These images are subsequently used to fabricate the 3D structures from photopolymer resins within a roll-to-roll printing process.<br />
+<br />
+(b) Schematic of the experimental r2rCLIP setup. An aluminum-coated PET film is unwound from a feed roll (I) and mechanically braked (II) to maintain tension as it passes through a high-precision z-stage and CLIP module (III). This ensures accurate substrate positioning during platform movement (IV). The film then undergoes a cleaning step (V) and a secondary curing process (VI), followed by immersion in a heated ultrasonic bath containing a nonionic surfactant solution and a blade to induce delamination (VII). Finally, the film is collected onto another roll driven by a stepper motor, providing continuous translational motion throughout the process (VIII).<br />
+<br />
+(c) A stitched set of scanning electron microscopy (SEM) images showing approximately 30,000 hollow cubic particles, demonstrating the scalability of this manufacturing approach.<br />
+<br />
+(d) Examples of octahedral, icosahedral, and dodecahedral particles, each with unit sizes ranging from 200 to 400 &micro;m, fabricated within a single print array. The samples in c and d were printed using an HDDA&ndash;HDDMA resin system and coated with Au/Pd (60:40) prior to SEM imaging. Scale bars: 3 mm (b, c), 500 &micro;m (d).<br />
+<br />
+The Digital Light Processing (DLP) technique projects a video composed of two-dimensional images representing a 3D model into a vat of photosensitive resin. This technology has improved its resolution from 50 &micro;m to 4.5 &micro;m and offers printing speeds of up to 3000 mm h⁻&sup1;. Continuous Liquid Interface Production (CLIP) employs a 385 nm ultraviolet light-emitting diode (LED) and a digital micromirror device (DMD) to simultaneously project an array of photochemical photons. These photons activate the photoinitiators dissolved in the liquid resin, inducing free-radical polymerization within each printed voxel. As a result, the process effectively eliminates any layer-by-layer steps, as illustrated in Figure 2.</p>
+<p>
+<br />
+<img src="../../images/blog/microscale-printing/img-004.png" alt="" loading="lazy">
+</p>
+<p>Figure 2: r2rCLIP enables high-precision optimization across a range of high-resolution internal and commercial materials<br />
+ </p>
+<p>(a) The bridging method is used to determine the working curve of resin curing performance, as demonstrated by a series of bridges showing the increase in penetration depth and corresponding cured depth under constant exposure dosage. The ridge shadows are consistent with the pixel spacing. Prior to SEM imaging, the coating was sputtered with Au/Pd (60:40) for exposure measurement of the bridges.<br />
+<br />
+(b) Determination of intrinsic penetration depth and critical cure dosage. At a given exposure (Emax), a lower slope corresponds to greater analytical control of the cured depth and reduced fluctuation tendency during exposure, resulting in significant variations in the cured depth (Cd). Scale bar: 15 &micro;m.<br />
+<br />
+To demonstrate the potential of r2rCLIP for fabricating dimensionally complex structures, we designed a series of geometrically intricate shapes using computer-aided design (CAD). These structures not only replicate designs previously achieved through 2D manufacturing and multi-step molding techniques but also include geometries that are otherwise un-moldable, as shown in Figure 3.<br />
+<br />
+We classified geometric complexity along a spectrum ranging from shapes that are moldable at scale to those that are not. Moldable geometries are defined as those that can be produced through single-axis drawing, core, and cavity molding in one proportional step. If the theoretical molding process requires additional parting lines, ejector pins, draft angles, or extensive alignment, or contains un-moldable negative internal spaces, the geometric complexity increases accordingly&mdash;thus reducing moldability at scale.</p>
+<p>
+<img src="../../images/blog/microscale-printing/img-005.png" alt="" loading="lazy">
+<br />
+Figure 3: SEM images of moldable-to-unmoldable geometries fabricated using r2rCLIP. <br />
+ </p>
+<p>Particles were prepared using the HDDA&ndash;HDDMA system, with exposure intensities informed by the bridge-fitting data (Figure 2). Samples were washed as described and coated with a 60:40 Au/Pd layer prior to SEM imaging. Insets show the rendered models of each geometry for reference. The capped hollow cone is shown as a quarter-section in the inset for clarity. Scale bar: 250 &micro;m.<br />
+<br />
+We fabricated 200 &micro;m particles from an HDDA&ndash;preceramic mixture and pyrolyzed them at 800 &deg;C under nitrogen, yielding hollow ceramic particles with a feature size of 103 &micro;m and wall thickness of approximately 25 &micro;m (Figure 4a). Energy-dispersive X-ray spectroscopy (EDS) analysis of these particles revealed a uniform distribution of O, Si, and C elements (Figure 4b). Subsequent annealing under nitrogen at temperatures up to 1400 &deg;C enabled the formation of phases such as silicon nitride and silica, depending on the precursor composition and processing conditions. In addition, we fabricated hydrogel cubes with a unit dimension of 400 &micro;m and sealed them with hydrogel caps (Figure 4c).</p>
+<p>
+<br />
+<img src="../../images/blog/microscale-printing/img-006.png" alt="" loading="lazy">
+</p>
+<p>Figure 4: Particles fabricated via r2rCLIP exhibit a wide range of potential applications, including ceramic microparticles and drug delivery systems</p>
+<p>
+<br />
+(a) Hollow ceramic cubes formed by pyrolysis of HDDA&ndash;ceramic composite resin.<br />
+(b) EDS analysis of the surface of a hollow ceramic cube (upper left) reveals a uniform distribution of silicon and oxygen, with normalized mass fractions of 30 &plusmn; 1% Si, 35 &plusmn; 1% O, and 35 &plusmn; 2% C. Elemental maps of O, Si, and C (upper right, lower left, and lower right, respectively) are overlaid on the secondary electron image of the hollow cube.<br />
+(c, d) Drug delivery cubes can be engineered to achieve specific targets such as payload volume, release profile, and material composition (c), and fabricated using r2rCLIP (d), for example with PEGDMA550 resin.<br />
+(e, f) The fabricated devices can subsequently be loaded with agents, as demonstrated by trypan blue dye filling (e), followed by sealing (f).<br />
+Scale bars: 100 &micro;m (a); 5 &micro;m (b, upper left); 100 &micro;m (b, other three images); 3 mm (d, e); 200 &micro;m (f).</p>
+<p>
+<br />
+<img src="../../images/blog/microscale-printing/img-007.png" alt="" loading="lazy">
+</p>
+<p>Figure 5: CLIP introduces a reactive zone that suppresses polymerization at the PTFE&ndash;resin interface by controlling oxygen diffusion</p>
+<p>
+<br />
+Incident light passes through an optically transparent Teflon AF window, allowing simultaneous oxygen permeation.Oxygen dominates at this interface, creating a &ldquo;dead zone&rdquo; where free-radical polymerization kinetics are inhibited. Above this region, the resin can successfully cure, as demonstrated here with the HDDA&ndash;HDDMA resin system, hollow tetrahedral particles, and edge sections from the working curve bridging test.(a) TMPTA and (b) HDDA&ndash;HDDMA systems, showing an increase in bridge exposure dosage from left to right, ranging from 0.77 to 9.18 mJ/cm&sup2; for TMPTA and from 16.07 to 41.32 mJ/cm&sup2; across 12 bridge positions. Scale bar: 250 &micro;m.<br />
+ </p>
+<p>
+<br />
+<img src="../../images/blog/microscale-printing/img-008.png" alt="" loading="lazy">
+</p>
+<p>Figure 6:(a) Thermogravimetric analysis (TGA) shows that after heating the SIL30 resin to 800 &deg;C under nitrogen, 9.5% of the initial mass remains.(b) X ray  diffraction (XRD) patterns indicate that the pyrolyzed products of SIL30 resin cured at 800 &deg;C and 1200 &deg;C remain amorphous. After annealing at 1400 &deg;C, the measured diffraction peaks correspond to reflections of &alpha;-Si₃N₄ (PDF-04-0070851) from the International Centre for Diffraction Data (ICDD). Following heating to 800 &deg;C in nitrogen, 8.8% of the initial mass is retained.(d) XRD analysis of the HDDA ceramic composite after pyrolysis at 1400 &deg;C for 8 h shows diffraction peaks matching the reflections of &alpha;-Si₃N₄ (PDF 04-0070851) and SiO₂ (PDF 04-0075018) from the ICDD database<br />
+<br />
+<strong>Conclusions</strong>
+<br />
+In conclusion, we present a novel roll-to-roll, high-resolution, and continuous liquid interface production (r2rCLIP) technique capable of batch fabricating particles up to 200 &micro;m with feature resolutions as fine as 2.0 &micro;m. The optical design, optimized for both printer and resin, enables unsupported z-resolution on the order of single-digit micrometers. The approach demonstrates rapid interchangeability, complex 3D manufacturing capability, and inherent compatibility with a variety of resin chemistries across moldable, multi-step molded, and un-moldable particle geometries. Furthermore, for devices smaller than 200 &micro;m, rapid particle fabrication allows potential gram-scale production within approximately 24 hours. This scalable particle manufacturing platform exhibits broad utility, spanning materials from ceramics to hydrogels, with promising applications in microtools, electronics, and drug delivery systems.</p>
+        </div>
+        <div class="article-nav">
+          <a class="btn btn-outline-dark" href="../blog.html">&#8592; Back to Blog</a>
+          <a class="btn btn-primary" href="../blog-enterprise.html">More Enterprise News</a>
+        </div>
+      </div>
+    </article>
+
+<section class="section contact" id="contact">
+      <div class="container">
+        <p class="section-tag section-tag-light">Contact</p>
+        <h2 class="section-title light">Get in Touch</h2>
+        <p class="section-sub light">Ready to explore ceramic 3D printing? Our team is here to help you choose the right equipment and materials.</p>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="tel:16675199919">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-text">
+              <span class="contact-label">Phone</span>
+              <span class="contact-value">+86 16675199919<br>Miss Liu</span>
+            </span>
+          </a>
+          <a class="contact-card" href="mailto:liuchunmei1@adt-qy.com">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-text">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">liuchunmei1@adt-qy.com</span>
+            </span>
+          </a>
+          <div class="contact-card contact-card-static">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-text">
+              <span class="contact-label">Address</span>
+              <span class="contact-value">Shenzhen: Room 120, Park 1, Overseas Students Pioneer Park, Longgang District<br>Foshan: 304-1, Building A, No. 92, Yanbu Sui Yanxi Road, Dali Town, Nanhai District</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="section-foot section-foot-center">
+          <a class="btn btn-primary" href="tel:16675199919">Call Now</a>
+          <a class="btn btn-outline" href="mailto:liuchunmei1@adt-qy.com">Send Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a class="footer-logo" href="../../index.html#top">
+          <img src="../../images/logo.png" alt="Adventure Technology">
+        </a>
+        <p class="footer-desc">Professional Ceramic 3D Printers for research, industry, and production.</p>
+        <p class="footer-title">Follow Us</p>
+        <div class="social-row">
+          <a href="https://www.youtube.com/@ADTCeramic3dPrinter" target="_blank" rel="nofollow" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2zM9.8 15.3V8.7l6 3.3-6 3.3z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61571171140390" target="_blank" rel="nofollow" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 8h3V5h-3a4 4 0 0 0-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9a1 1 0 0 1 1-1z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/adventure-tech-3d-printing-64b73134b/" target="_blank" rel="nofollow" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.instagram.com/adt_ceramic3dprint/" target="_blank" rel="nofollow" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.81s-.01 3.54-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.3.06-1.7.07-4.9.07s-3.6-.01-4.9-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.11 15.54 2.1 15.16 2.1 12s.01-3.54.07-4.81C2.32 3.96 3.84 2.42 7.1 2.27 8.4 2.21 8.8 2.2 12 2.2zm0 4.8a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm6.2-8.4a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://x.com/ADT__3dPrint" target="_blank" rel="nofollow" aria-label="X">
+            <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.5 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.9H5.3L17.8 20z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Company">
+        <p class="footer-title">Company</p>
+        <ul class="footer-links">
+          <li><a href="../about.html#profile">Profile</a></li>
+          <li><a href="../about.html#honor">Honor</a></li>
+          <li><a href="../about.html#development">Development</a></li>
+          <li><a href="../service.html">Service</a></li>
+          <li><a href="../application.html">Application</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Printers">
+        <p class="footer-title">Printers</p>
+        <ul class="footer-links">
+          <li><a href="../printers.html#dlp">DLP Ceramic 3D Printer</a></li>
+          <li><a href="../printers.html#diw">DIW Ceramic 3D Printer</a></li>
+          <li><a href="../printers.html#sla">SLA Ceramic 3D Printer</a></li>
+        </ul>
+        <p class="footer-title footer-title-gap">Material</p>
+        <ul class="footer-links">
+          <li><a href="../material/oxide.html">Oxide Ceramics</a></li>
+          <li><a href="../material/non-oxide.html">Non-oxide Ceramics</a></li>
+          <li><a href="../material/bioceramics.html">Bioceramics</a></li>
+          <li><a href="../material/resin.html">Photosensitive Resin</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Contact">
+        <p class="footer-title">Contact Us</p>
+        <ul class="footer-links">
+          <li><a href="../contact.html#information">Contact Information</a></li>
+          <li><a href="../contact.html#agent">Authorized Agent</a></li>
+          <li><a href="../contact.html#recruitment">Talent Recruitment</a></li>
+        </ul>
+        <p class="footer-title footer-title-gap">Direct</p>
+        <ul class="footer-links">
+          <li><a href="tel:16675199919">+86 16675199919</a></li>
+          <li><a href="mailto:liuchunmei1@adt-qy.com">liuchunmei1@adt-qy.com</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <a href="https://panda3dp.com" target="_blank">China 3DPrint News</a>
+        <p>&copy; 2024 Shenzhen Adventure Technology Co., Ltd. All rights reserved.</p>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+<!-- ============ Floating rail ============ -->
+  <div class="float-rail">
+    <a class="float-btn" href="https://api.whatsapp.com/send?phone=008616675199919&amp;text=Hello" target="_blank" rel="nofollow" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.2-3.6-.8-3-1.2-4.9-4.2-5.1-4.4-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5s.8 1.9.9 2c.1.1.1.3 0 .5l-.4.6-.5.5c-.2.2-.3.3-.1.6.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.8.8c.3.2.5.3.6.4.1.2.1.7-.1 1.3z" fill="currentColor"/></svg>
+    </a>
+    <a class="float-btn" href="mailto:liuchunmei1@adt-qy.com" aria-label="E-mail">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+    </a>
+    <a class="float-btn float-btn-top" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24"><path d="M12 4l8 8h-5v8h-6v-8H4l8-8z" fill="currentColor"/></svg>
+    </a>
+  </div>
+</body>
+</html>

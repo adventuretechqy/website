@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DLP Ceramic 3D Printing of Alumina Pharmaceutical Bottles: A Technical Case Study | Adventure Technology</title>
+  <meta name="description" content="A technical case study on DLP ceramic 3D printing of alumina pharmaceutical bottles with complex hollow ceramic parts - internal cavities, threaded necks, and integrated closures.">
+  <link rel="icon" href="../../images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body id="top">
+
+<header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../index.html#top">
+        <img src="../../images/logo.png" alt="Adventure Technology">
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+      <label for="nav-toggle" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-list">
+          <li class="has-sub">
+            <a href="../printers.html">Printers</a>
+            <ul class="submenu">
+              <li><a href="../printers.html#dlp">DLP Ceramic 3D Printer</a></li>
+              <li><a href="../printers.html#diw">DIW Ceramic 3D Printer</a></li>
+              <li><a href="../printers.html#sla">SLA Ceramic 3D Printer</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../material.html">Material</a>
+            <ul class="submenu">
+              <li><a href="../material/oxide.html">Oxide Ceramics</a></li>
+              <li><a href="../material/non-oxide.html">Non-oxide Ceramics</a></li>
+              <li><a href="../material/bioceramics.html">Bioceramics</a></li>
+              <li><a href="../material/resin.html">Photosensitive Resin</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../service.html">Service</a>
+            <ul class="submenu">
+              <li><a href="../service.html#description">Product Description</a></li>
+              <li><a href="../service.html#case">Customer Case</a></li>
+              <li><a href="../service.html#request">Print Service Request</a></li>
+              <li><a href="../service.html#process">Order Process</a></li>
+              <li><a href="../service.html#related">Related Products</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../application.html">Application</a>
+            <ul class="submenu">
+              <li><a href="../application.html#research">Research</a></li>
+              <li><a href="../application.html#industry">Industry</a></li>
+              <li><a href="../application.html#medical">Medical</a></li>
+              <li><a href="../application.html#artistic">Artistic Creation</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a class="active" href="../blog.html">Blog</a>
+            <ul class="submenu">
+              <li><a href="../blog-industry.html">Industry Dynamics</a></li>
+              <li><a href="../blog-print-case.html">Print Case</a></li>
+              <li><a href="../blog-enterprise.html">Enterprise News</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../contact.html">Contact Us</a>
+            <ul class="submenu">
+              <li><a href="../contact.html#information">Contact Information</a></li>
+              <li><a href="../contact.html#agent">Authorized Agent</a></li>
+              <li><a href="../contact.html#recruitment">Talent Recruitment</a></li>
+            </ul>
+          </li>
+          <li class="has-sub">
+            <a href="../about.html">About Us</a>
+            <ul class="submenu">
+              <li><a href="../about.html#profile">Profile</a></li>
+              <li><a href="../about.html#honor">Honor</a></li>
+              <li><a href="../about.html#development">Development</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="header-social" aria-label="Social media">
+          <a href="https://www.youtube.com/@ADTCeramic3dPrinter" target="_blank" rel="nofollow" aria-label="YouTube" title="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2zM9.8 15.3V8.7l6 3.3-6 3.3z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61571171140390" target="_blank" rel="nofollow" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 8h3V5h-3a4 4 0 0 0-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9a1 1 0 0 1 1-1z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/adventure-tech-3d-printing-64b73134b/" target="_blank" rel="nofollow" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.instagram.com/adt_ceramic3dprint/" target="_blank" rel="nofollow" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.81s-.01 3.54-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.3.06-1.7.07-4.9.07s-3.6-.01-4.9-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.11 15.54 2.1 15.16 2.1 12s.01-3.54.07-4.81C2.32 3.96 3.84 2.42 7.1 2.27 8.4 2.21 8.8 2.2 12 2.2zm0 4.8a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm6.2-8.4a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://x.com/ADT__3dPrint" target="_blank" rel="nofollow" aria-label="X" title="X">
+            <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.5 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.9H5.3L17.8 20z" fill="currentColor"/></svg>
+          </a>
+        </div>
+        <a class="btn btn-primary" href="../../index.html#contact">Get in Touch</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ Article Hero ============ -->
+    <section class="page-hero page-hero-photo-blog">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../../index.html">Home</a>
+          <span>/</span>
+          <a href="../blog.html">Blog</a>
+          <span>/</span>
+          <a href="../blog-print-case.html">Print Case</a>
+        </nav>
+        <h1>DLP Ceramic 3D Printing of Alumina Pharmaceutical Bottles: A Technical Case Study</h1>
+        <p class="article-meta">
+          <span class="article-tag">Print Case</span>
+          <span class="article-date">2026-06-04</span>
+          <span class="article-author">By ADT</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ Article Body ============ -->
+    <article class="section article">
+      <div class="container">
+        <div class="article-body">
+<h2>Introduction</h2>
+<p>
+<strong>DLP ceramic 3D printing</strong> builds parts directly from a CAD model using projected UV light to cure a <strong>ceramic slurry</strong> layer by layer. It eliminates the tooling constraints that make complex ceramic geometries expensive and slow to produce through conventional <strong>ceramic manufacturing</strong> methods. For the pharmaceutical industry, where <strong>high-purity alumina</strong> ceramic containers must often integrate internal cavities, precision-threaded openings, and integrated closures in a single component, this capability changes what is economically and technically feasible.</p>
+<p>Traditional forming techniques like ceramic injection molding and dry pressing struggle when multiple complex features are required in one component. A pharmaceutical-grade container needing an internal chamber, threaded neck, and closure cap typically goes through mold fabrication, green body forming, debinding, sintering, CNC machining, and manual assembly - each step adding lead time, cost, and dimensional variability. <strong>DLP ceramic 3D printing</strong> replaces this multi-step path with a single print-and-sinter workflow. This case study documents that process end to end.</p>
+<p>
+<img src="../../images/blog/alumina-pharmaceutical-bottles/img-003.png" alt="" loading="lazy">
+</p>
+<h2>The Challenge: Where Conventional Methods Struggle</h2>
+<p>Ceramic injection molding requires physical cores to form internal cavities - each core adds mold complexity, tooling cost, and failure risk. For pharmaceutical-grade components with tight dimensional tolerances, the cumulative error across multiple forming and machining steps often pushes designs past economic viability. Threaded ceramic features compound the problem: the abrasive nature of ceramic accelerates mold wear, and the fragile green body risks cracking during demolding. Threaded features almost always require CNC post-machining after sintering, adding cost and micro-cracking risk.</p>
+<p>When a single component demands an internal cavity, a precision-threaded neck, and a custom-fit cap, the conventional path involves multiple suppliers and operations - eight to sixteen weeks and $5,000-$50,000+ in mold costs are common for prototype validation runs. The question this case study answers: can <strong>DLP ceramic 3D printing</strong> deliver the same result in a fraction of the time?</p>
+<p>
+<img src="../../images/blog/alumina-pharmaceutical-bottles/img-004.webp" alt="" loading="lazy">
+</p>
+<h2>The Component: What We Printed</h2>
+<p>The part is a cylindrical alumina ceramic pharmaceutical bottle requiring four features in one ceramic body. The hollow internal cavity - defined digitally in CAD and printed as part of the green body without a physical core - was the first. The precision-threaded bottle neck, designed for a matching alumina ceramic closure cap printed separately and sintered to final dimensions, was the second. The cap itself was third, printed from the same alumina <strong>ceramic slurry</strong> to ensure thermal expansion compatibility during sterilization cycling. Small auxiliary functional components completed the assembly.</p>
+<p>The material is <strong>high-purity alumina</strong> (Al2O3, 99.5%+). This grade resists most acids, alkalis, and organic solvents, withstands temperatures to 1,600 degrees C for autoclave compatibility, and delivers near-zero ion leaching that protects sample integrity in pharmaceutical and laboratory applications - properties that glass cannot match.</p>
+<p>
+<img src="../../images/blog/alumina-pharmaceutical-bottles/img-005.webp" alt="" loading="lazy">
+</p>
+<h2>The DLP Ceramic 3D Printing Process</h2>
+<p>
+<strong>DLP</strong> uses a UV projector to cure cross-sectional layers of a <strong>ceramic slurry</strong> onto a build platform. The slurry contains <strong>high-purity alumina</strong> powder dispersed in a UV-reactive resin binder at 40-60% solid loading - balancing flowability for even layer spreading against green body strength for sintering. After printing, the green body undergoes <strong>thermal debinding</strong> in a controlled furnace, followed by sintering at 1,500-1,700 degrees C. The alumina densifies to 95-98% of theoretical density with 15-20% linear shrinkage, fully compensated in the original CAD.</p>
+<p>The final <strong>DLP ceramic 3D printing</strong> part exhibits flexural strength of 300-400 MPa, Vickers hardness of 1,500-1,800 HV, and bulk density above 3.9 g/cm3 - consistent with conventionally sintered <strong>high-purity alumina</strong>. The threaded neck printed with sufficient fidelity for functional cap engagement after sintering, without any post-machining.</p>
+<p>
+<img src="../../images/blog/alumina-pharmaceutical-bottles/img-006.gif" alt="" loading="lazy">
+</p>
+<h2>Capabilities and Limitations: An Honest View</h2>
+<p>
+<strong>DLP ceramic 3D printing</strong> achieves XY resolution of 25-75 micrometers per pixel - higher than most laser-based <strong>SLA</strong> systems - making it effective for thread flanks, small radii, and fine structural features. Dimensional tolerance after sintering compensation typically lands within plus or minus 0.1-0.5 mm for well-designed geometries. Surface roughness at 25-50 micrometer layers is subtle and generally adequate for pharmaceutical applications without additional polishing.</p>
+<p>Honest limitations: <strong>DLP ceramic 3D printing</strong> is not yet cost-competitive with high-volume ceramic injection molding above approximately 500-1,000 units. Build volumes are constrained to roughly 100 mm x 100 mm up to 200 mm x 200 mm by projector size. For the alumina ceramic pharmaceutical bottle in this study - a medium-sized precision component for prototype and low-volume production - <strong>DLP</strong> sits squarely in its optimal application window.</p>
+<h2>Design Iteration: The Real Advantage</h2>
+<p>Beyond the finished part, <strong>DLP ceramic 3D printing</strong> transforms the development process itself. In this study, the design team moved through three substantive design variants before arriving at the final configuration - each modifying internal cavity geometry, wall thickness, and cap fit. Each iteration from revised CAD to sintered ceramic sample took 48-72 hours. Under conventional molding, a single iteration of this scope would have added 3-6 weeks and thousands of dollars. This ability to test before committing is genuinely valuable for teams working with novel geometries.</p>
+<h2>Applications Beyond the Pharmaceutical Bottle</h2>
+<p>The <strong>DLP ceramic 3D printing</strong> capability demonstrated here extends across laboratory, semiconductor, and medical sectors. In laboratories, alumina ceramic reagent vessels and high-temperature crucibles benefit from near-zero ion leaching in pharmaceutical QC and analytical chemistry. In semiconductor manufacturing, wafer carriers and process chamber liners can incorporate internal channels and custom geometries impractical by conventional means. In medical devices, biocompatible alumina enables patient-specific ceramic implants and surgical tools with integrated functional features. The same workflow supports zirconia, silicon carbide, silicon nitride, and hydroxyapatite.</p>
+<p>
+<img src="../../images/blog/alumina-pharmaceutical-bottles/img-007.gif" alt="" loading="lazy">
+</p>
+<h2>How DLP Compares to Other Ceramic AM Technologies</h2>
+<p>Binder Jetting is faster for large parts but requires infiltration to achieve functional properties and struggles with fine feature reproduction. Direct Ink Writing (DIW) is limited by nozzle resolution and cannot reliably produce enclosed cavities. Laser-based <strong>SLA</strong> is competitive in resolution but slower for small-to-medium precision parts. Nanoparticle Jetting (NPJ) achieves exceptional resolution but is limited to narrow material systems with substantially higher cost. For the medium-sized alumina ceramic pharmaceutical bottle requiring smooth internal cavity walls, functional thread geometry, and high material purity, <strong>DLP ceramic 3D printing</strong> offers the best balance of resolution, material quality, and cost-effectiveness.</p>
+<h2>Conclusion</h2>
+<p>This case study demonstrates that <strong>DLP ceramic 3D printing</strong> is not a compromise alternative to conventional <strong>ceramic manufacturing</strong> - it is a genuinely differentiated process that excels where design complexity, lead time, and tooling cost are the primary constraints. Producing the alumina ceramic pharmaceutical bottle - with its hollow internal cavity, precision-threaded neck, matching closure cap, and auxiliary components - in a single print-and-sinter workflow illustrates what <strong>DLP</strong> <strong>ceramic AM</strong> does: it builds complexity into the part without building cost into the process. For prototype validation, design iteration, and low-to-medium volume production of <strong>complex hollow ceramic parts</strong>, the answer is increasingly yes.</p>
+<h2>Ready to Take Your Ceramic Part from Design to Functional Prototype?</h2>
+<p>Whether you are working with alumina, zirconia, silicon carbide, silicon nitride, or another technical ceramic, if your design involves internal cavities, threaded features, enclosed geometries, or integrated multi-component assemblies, <strong>DLP ceramic 3D printing</strong> may be your fastest route from concept to validated part.</p>
+<p>
+<strong>Request a free design review and quote.</strong>
+</p>
+        </div>
+        <div class="article-nav">
+          <a class="btn btn-outline-dark" href="../blog.html">&#8592; Back to Blog</a>
+          <a class="btn btn-primary" href="../blog-print-case.html">More Print Case</a>
+        </div>
+      </div>
+    </article>
+
+<section class="section contact" id="contact">
+      <div class="container">
+        <p class="section-tag section-tag-light">Contact</p>
+        <h2 class="section-title light">Get in Touch</h2>
+        <p class="section-sub light">Ready to explore ceramic 3D printing? Our team is here to help you choose the right equipment and materials.</p>
+
+        <div class="contact-grid">
+          <a class="contact-card" href="tel:16675199919">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-text">
+              <span class="contact-label">Phone</span>
+              <span class="contact-value">+86 16675199919<br>Miss Liu</span>
+            </span>
+          </a>
+          <a class="contact-card" href="mailto:liuchunmei1@adt-qy.com">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-text">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">liuchunmei1@adt-qy.com</span>
+            </span>
+          </a>
+          <div class="contact-card contact-card-static">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="currentColor"/></svg>
+            </span>
+            <span class="contact-text">
+              <span class="contact-label">Address</span>
+              <span class="contact-value">Shenzhen: Room 120, Park 1, Overseas Students Pioneer Park, Longgang District<br>Foshan: 304-1, Building A, No. 92, Yanbu Sui Yanxi Road, Dali Town, Nanhai District</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="section-foot section-foot-center">
+          <a class="btn btn-primary" href="tel:16675199919">Call Now</a>
+          <a class="btn btn-outline" href="mailto:liuchunmei1@adt-qy.com">Send Email</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<!-- ============ Footer ============ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <a class="footer-logo" href="../../index.html#top">
+          <img src="../../images/logo.png" alt="Adventure Technology">
+        </a>
+        <p class="footer-desc">Professional Ceramic 3D Printers for research, industry, and production.</p>
+        <p class="footer-title">Follow Us</p>
+        <div class="social-row">
+          <a href="https://www.youtube.com/@ADTCeramic3dPrinter" target="_blank" rel="nofollow" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.5 12 4.5 12 4.5s-7 0-8.9.6A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 23.5 12 31 31 0 0 0 23 7.2zM9.8 15.3V8.7l6 3.3-6 3.3z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61571171140390" target="_blank" rel="nofollow" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M14 8h3V5h-3a4 4 0 0 0-4 4v2H7v3h3v7h3v-7h3l1-3h-4V9a1 1 0 0 1 1-1z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/adventure-tech-3d-printing-64b73134b/" target="_blank" rel="nofollow" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.5c0-1.31-.02-3-1.83-3-1.83 0-2.11 1.43-2.11 2.9V21h-4V9z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.instagram.com/adt_ceramic3dprint/" target="_blank" rel="nofollow" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.81s-.01 3.54-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.3.06-1.7.07-4.9.07s-3.6-.01-4.9-.07c-3.26-.15-4.77-1.7-4.92-4.92C2.11 15.54 2.1 15.16 2.1 12s.01-3.54.07-4.81C2.32 3.96 3.84 2.42 7.1 2.27 8.4 2.21 8.8 2.2 12 2.2zm0 4.8a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm6.2-8.4a1.15 1.15 0 1 0 0-2.3 1.15 1.15 0 0 0 0 2.3z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://x.com/ADT__3dPrint" target="_blank" rel="nofollow" aria-label="X">
+            <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3l-4.9-6.4L6.4 22H3.3l7.3-8.3L1.5 2H8l4.4 5.9L18.9 2zm-1.1 18h1.7L7.1 3.9H5.3L17.8 20z" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Company">
+        <p class="footer-title">Company</p>
+        <ul class="footer-links">
+          <li><a href="../about.html#profile">Profile</a></li>
+          <li><a href="../about.html#honor">Honor</a></li>
+          <li><a href="../about.html#development">Development</a></li>
+          <li><a href="../service.html">Service</a></li>
+          <li><a href="../application.html">Application</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Printers">
+        <p class="footer-title">Printers</p>
+        <ul class="footer-links">
+          <li><a href="../printers.html#dlp">DLP Ceramic 3D Printer</a></li>
+          <li><a href="../printers.html#diw">DIW Ceramic 3D Printer</a></li>
+          <li><a href="../printers.html#sla">SLA Ceramic 3D Printer</a></li>
+        </ul>
+        <p class="footer-title footer-title-gap">Material</p>
+        <ul class="footer-links">
+          <li><a href="../material/oxide.html">Oxide Ceramics</a></li>
+          <li><a href="../material/non-oxide.html">Non-oxide Ceramics</a></li>
+          <li><a href="../material/bioceramics.html">Bioceramics</a></li>
+          <li><a href="../material/resin.html">Photosensitive Resin</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Contact">
+        <p class="footer-title">Contact Us</p>
+        <ul class="footer-links">
+          <li><a href="../contact.html#information">Contact Information</a></li>
+          <li><a href="../contact.html#agent">Authorized Agent</a></li>
+          <li><a href="../contact.html#recruitment">Talent Recruitment</a></li>
+        </ul>
+        <p class="footer-title footer-title-gap">Direct</p>
+        <ul class="footer-links">
+          <li><a href="tel:16675199919">+86 16675199919</a></li>
+          <li><a href="mailto:liuchunmei1@adt-qy.com">liuchunmei1@adt-qy.com</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <a href="https://panda3dp.com" target="_blank">China 3DPrint News</a>
+        <p>&copy; 2024 Shenzhen Adventure Technology Co., Ltd. All rights reserved.</p>
+        <a href="../privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+<!-- ============ Floating rail ============ -->
+  <div class="float-rail">
+    <a class="float-btn" href="https://api.whatsapp.com/send?phone=008616675199919&amp;text=Hello" target="_blank" rel="nofollow" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.4 14.1c-.2.7-1.3 1.3-1.9 1.4-.5.1-1.1.2-3.6-.8-3-1.2-4.9-4.2-5.1-4.4-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5s.8 1.9.9 2c.1.1.1.3 0 .5l-.4.6-.5.5c-.2.2-.3.3-.1.6.1.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.7-.1l1.8.8c.3.2.5.3.6.4.1.2.1.7-.1 1.3z" fill="currentColor"/></svg>
+    </a>
+    <a class="float-btn" href="mailto:liuchunmei1@adt-qy.com" aria-label="E-mail">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/></svg>
+    </a>
+    <a class="float-btn float-btn-top" href="#top" aria-label="Back to top">
+      <svg viewBox="0 0 24 24"><path d="M12 4l8 8h-5v8h-6v-8H4l8-8z" fill="currentColor"/></svg>
+    </a>
+  </div>
+</body>
+</html>
