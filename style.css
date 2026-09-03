@@ -315,7 +315,12 @@ svg { width: 100%; height: 100%; }
   overflow: hidden;
   background: var(--dark);
   color: #fff;
+  /* min-height guarantees the text block fits at 100% zoom and below;
+     height tracks the viewport width beyond that so the banner keeps the
+     SAME crop as at 100% when zoomed out (50%/75%) or on wider screens —
+     otherwise the box widens while height stays 600px and cover crops flatter. */
   min-height: 600px;
+  height: 31.5vw;
   display: flex;
   align-items: center;   /* vertical centering only */
   padding: 100px 0;
