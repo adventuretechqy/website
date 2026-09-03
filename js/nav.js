@@ -21,6 +21,7 @@
   /* 2) Close when tapping anywhere outside the menu and the hamburger button. */
   document.addEventListener('click', function (e) {
     if (!toggle.checked) return;
+    if (e.target === toggle) return; // label 合成触发的 checkbox 点击，忽略，避免误关
     if (nav && nav.contains(e.target)) return;
     if (hamburger && hamburger.contains(e.target)) return;
     close();
