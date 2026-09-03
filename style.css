@@ -1124,7 +1124,8 @@ a.contact-card:hover {
   .page-section .carousel-btn { display: none; }
 
   .materials .product-grid,
-  .news .news-grid {
+  .news .news-grid,
+  .page-section .news-grid {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -1135,9 +1136,11 @@ a.contact-card:hover {
     padding: 4px 0 16px;
   }
   .materials .product-grid::-webkit-scrollbar,
-  .news .news-grid::-webkit-scrollbar { display: none; }
+  .news .news-grid::-webkit-scrollbar,
+  .page-section .news-grid::-webkit-scrollbar { display: none; }
   .materials .product-grid .product-card,
-  .news .news-grid .news-card {
+  .news .news-grid .news-card,
+  .page-section .news-grid .news-card {
     flex: 0 0 84%;
     scroll-snap-align: start;
   }
