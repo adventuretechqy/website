@@ -1110,6 +1110,24 @@ a.contact-card:hover {
   }
   .products .carousel-btn { display: none; }
 
+  /* Inner-page product carousels (printer "Other Printers" / material & service
+     "Related Products"): the same .product-carousel component. On ≤1024px switch
+     to a swipeable horizontal scroller like the homepage Printers & News sections
+     — 84% cards with a peek, scroll-snap, arrows hidden. Desktop (>1024px) is
+     untouched. */
+  .page-section .carousel-viewport {
+    padding: 4px 0 16px;
+    margin: 0;
+    scroll-snap-type: x mandatory;
+  }
+  .page-section .carousel-viewport::-webkit-scrollbar { display: none; }
+  .page-section .product-carousel-track { gap: 16px; }
+  .page-section .product-carousel-track .product-card {
+    flex: 0 0 84%;
+    scroll-snap-align: start;
+  }
+  .page-section .carousel-btn { display: none; }
+
   .materials .product-grid,
   .news .news-grid {
     display: flex;
