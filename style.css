@@ -1083,7 +1083,6 @@ a.contact-card:hover {
   .product-grid { grid-template-columns: repeat(2, 1fr); }
   .product-carousel-track .product-card { flex-basis: calc(50% - 12px); }
   .material-grid { grid-template-columns: repeat(2, 1fr); }
-  .news-grid { grid-template-columns: repeat(2, 1fr); }
   .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 
@@ -1214,7 +1213,6 @@ a.contact-card:hover {
   .carousel-btn-prev { left: 0; }
   .carousel-btn-next { right: 0; }
   .material-grid { grid-template-columns: 1fr; }
-  .news-grid { grid-template-columns: 1fr; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
 
