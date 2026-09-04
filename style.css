@@ -262,7 +262,6 @@ svg { width: 100%; height: 100%; }
   .submenu .submenu {
     top: -9px;                    /* align flyout's first item with its parent row */
     left: 100%;
-    border-radius: 0 8px 8px 0;   /* square left corners so it reads as attached */
     box-shadow: 6px 10px 28px rgba(0,0,0,.10); /* right-biased, not over the parent */
   }
   .submenu .has-sub > a::after { content: none; } /* no caret on nested items */
