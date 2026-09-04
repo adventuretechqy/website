@@ -241,7 +241,7 @@ svg { width: 100%; height: 100%; }
   z-index: 50;
 }
 @media (hover: hover) and (pointer: fine) {
-  .has-sub:hover .submenu { display: block; }
+  .has-sub:hover > .submenu { display: block; }
 }
 
 .submenu a {
@@ -254,6 +254,18 @@ svg { width: 100%; height: 100%; }
 }
 @media (hover: hover) and (pointer: fine) {
   .submenu a:hover { background: var(--gray-50); color: var(--blue); padding-left: 26px; }
+}
+
+/* nested (third-level) dropdown — desktop flyout */
+@media (hover: hover) and (pointer: fine) and (min-width: 821px) {
+  .submenu li.has-sub { position: relative; }
+  .submenu .submenu {
+    top: -9px;                    /* align flyout's first item with its parent row */
+    left: 100%;
+    border-radius: 0 8px 8px 0;   /* square left corners so it reads as attached */
+    box-shadow: 6px 10px 28px rgba(0,0,0,.10); /* right-biased, not over the parent */
+  }
+  .submenu .has-sub > a::after { content: none; } /* no caret on nested items */
 }
 
 .header-actions { margin-left: auto; display: flex; align-items: center; gap: 16px; }
@@ -1271,6 +1283,10 @@ svg { width: 100%; height: 100%; }
   .submenu a { padding: 9px 40px; }
   @media (hover: hover) and (pointer: fine) {
     .submenu a:hover { padding-left: 46px; }
+  }
+  .submenu .submenu a { padding-left: 56px; }
+  @media (hover: hover) and (pointer: fine) {
+    .submenu .submenu a:hover { padding-left: 62px; }
   }
 }
 
